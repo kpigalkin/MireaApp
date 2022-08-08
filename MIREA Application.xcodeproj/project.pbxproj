@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */; };
+		DB0B257E289B37B1005DFE26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB0B257D289B37B1005DFE26 /* Assets.xcassets */; };
+		DB0B2581289B37B1005DFE26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */; };
+		DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2589289B37D0005DFE26 /* AppDelegate.swift */; };
+		DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B258A289B37D0005DFE26 /* NavigationViewController.swift */; };
+		DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B258B289B37D0005DFE26 /* TabBarController.swift */; };
+		DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2594289B392D005DFE26 /* NewsPresenter.swift */; };
+		DB0B259B289B392D005DFE26 /* NewsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2595289B392D005DFE26 /* NewsWorker.swift */; };
+		DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2596289B392D005DFE26 /* NewsRouter.swift */; };
+		DB0B259D289B392D005DFE26 /* NewsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2597289B392D005DFE26 /* NewsModels.swift */; };
+		DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2598289B392D005DFE26 /* NewsViewController.swift */; };
+		DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2599289B392D005DFE26 /* NewsInteractor.swift */; };
+		DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */; };
+		DB0B25A7289B3940005DFE26 /* ScheduleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A1289B3940005DFE26 /* ScheduleWorker.swift */; };
+		DB0B25A8289B3940005DFE26 /* ScheduleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */; };
+		DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */; };
+		DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */; };
+		DB0B25AB289B3940005DFE26 /* ScheduleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */; };
+		DB0B25B3289B3959005DFE26 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25AD289B3959005DFE26 /* MapPresenter.swift */; };
+		DB0B25B4289B3959005DFE26 /* MapWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25AE289B3959005DFE26 /* MapWorker.swift */; };
+		DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25AF289B3959005DFE26 /* MapRouter.swift */; };
+		DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B0289B3959005DFE26 /* MapModels.swift */; };
+		DB0B25B7289B3959005DFE26 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B1289B3959005DFE26 /* MapViewController.swift */; };
+		DB0B25B8289B3959005DFE26 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B2289B3959005DFE26 /* MapInteractor.swift */; };
+		DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */; };
+		DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BB289E7870005DFE26 /* NewsView.swift */; };
+		DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */; };
+		DB0B25C1289E8464005DFE26 /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DB0B2571289B37B0005DFE26 /* MIREA Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIREA Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DB0B257D289B37B1005DFE26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB0B2580289B37B1005DFE26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DB0B2582289B37B1005DFE26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB0B2589289B37D0005DFE26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB0B258A289B37D0005DFE26 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		DB0B258B289B37D0005DFE26 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		DB0B2594289B392D005DFE26 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
+		DB0B2595289B392D005DFE26 /* NewsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWorker.swift; sourceTree = "<group>"; };
+		DB0B2596289B392D005DFE26 /* NewsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
+		DB0B2597289B392D005DFE26 /* NewsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModels.swift; sourceTree = "<group>"; };
+		DB0B2598289B392D005DFE26 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		DB0B2599289B392D005DFE26 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
+		DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
+		DB0B25A1289B3940005DFE26 /* ScheduleWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWorker.swift; sourceTree = "<group>"; };
+		DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouter.swift; sourceTree = "<group>"; };
+		DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModels.swift; sourceTree = "<group>"; };
+		DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInteractor.swift; sourceTree = "<group>"; };
+		DB0B25AD289B3959005DFE26 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		DB0B25AE289B3959005DFE26 /* MapWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorker.swift; sourceTree = "<group>"; };
+		DB0B25AF289B3959005DFE26 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
+		DB0B25B0289B3959005DFE26 /* MapModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModels.swift; sourceTree = "<group>"; };
+		DB0B25B1289B3959005DFE26 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DB0B25B2289B3959005DFE26 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
+		DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
+		DB0B25BB289E7870005DFE26 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionItem.swift; sourceTree = "<group>"; };
+		DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB0B256E289B37B0005DFE26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB0B2568289B37B0005DFE26 = {
+			isa = PBXGroup;
+			children = (
+				DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */,
+				DB0B257D289B37B1005DFE26 /* Assets.xcassets */,
+				DB0B2573289B37B0005DFE26 /* MIREA Application */,
+				DB0B2572289B37B0005DFE26 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB0B2572289B37B0005DFE26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B2571289B37B0005DFE26 /* MIREA Application.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB0B2573289B37B0005DFE26 /* MIREA Application */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B2582289B37B1005DFE26 /* Info.plist */,
+				DB0B258A289B37D0005DFE26 /* NavigationViewController.swift */,
+				DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */,
+				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
+				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
+				DB0B2590289B38F7005DFE26 /* Scenes */,
+			);
+			path = "MIREA Application";
+			sourceTree = "<group>";
+		};
+		DB0B2590289B38F7005DFE26 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B2593289B3919005DFE26 /* News */,
+				DB0B2592289B390C005DFE26 /* Schedule */,
+				DB0B2591289B38FF005DFE26 /* Map */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DB0B2591289B38FF005DFE26 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B25AD289B3959005DFE26 /* MapPresenter.swift */,
+				DB0B25AE289B3959005DFE26 /* MapWorker.swift */,
+				DB0B25AF289B3959005DFE26 /* MapRouter.swift */,
+				DB0B25B0289B3959005DFE26 /* MapModels.swift */,
+				DB0B25B1289B3959005DFE26 /* MapViewController.swift */,
+				DB0B25B2289B3959005DFE26 /* MapInteractor.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		DB0B2592289B390C005DFE26 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */,
+				DB0B25A1289B3940005DFE26 /* ScheduleWorker.swift */,
+				DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */,
+				DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */,
+				DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */,
+				DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		DB0B2593289B3919005DFE26 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B2596289B392D005DFE26 /* NewsRouter.swift */,
+				DB0B2597289B392D005DFE26 /* NewsModels.swift */,
+				DB0B2594289B392D005DFE26 /* NewsPresenter.swift */,
+				DB0B2595289B392D005DFE26 /* NewsWorker.swift */,
+				DB0B2599289B392D005DFE26 /* NewsInteractor.swift */,
+				DB0B2598289B392D005DFE26 /* NewsViewController.swift */,
+				DB0B25BB289E7870005DFE26 /* NewsView.swift */,
+				DB0B25BD289E825F005DFE26 /* UICollection */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		DB0B25BD289E825F005DFE26 /* UICollection */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */,
+				DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */,
+				DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */,
+			);
+			path = UICollection;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB0B2570289B37B0005DFE26 /* MIREA Application */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB0B2585289B37B1005DFE26 /* Build configuration list for PBXNativeTarget "MIREA Application" */;
+			buildPhases = (
+				DB0B256D289B37B0005DFE26 /* Sources */,
+				DB0B256E289B37B0005DFE26 /* Frameworks */,
+				DB0B256F289B37B0005DFE26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MIREA Application";
+			productName = "MIREA Application";
+			productReference = DB0B2571289B37B0005DFE26 /* MIREA Application.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB0B2569289B37B0005DFE26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					DB0B2570289B37B0005DFE26 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = DB0B256C289B37B0005DFE26 /* Build configuration list for PBXProject "MIREA Application" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB0B2568289B37B0005DFE26;
+			productRefGroup = DB0B2572289B37B0005DFE26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB0B2570289B37B0005DFE26 /* MIREA Application */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB0B256F289B37B0005DFE26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0B2581289B37B1005DFE26 /* LaunchScreen.storyboard in Resources */,
+				DB0B257E289B37B1005DFE26 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB0B256D289B37B0005DFE26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0B25B4289B3959005DFE26 /* MapWorker.swift in Sources */,
+				DB0B25AB289B3940005DFE26 /* ScheduleInteractor.swift in Sources */,
+				DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */,
+				DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */,
+				DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */,
+				DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */,
+				DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */,
+				DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */,
+				DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */,
+				DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */,
+				DB0B25B8289B3959005DFE26 /* MapInteractor.swift in Sources */,
+				DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */,
+				DB0B25A7289B3940005DFE26 /* ScheduleWorker.swift in Sources */,
+				DB0B25B7289B3959005DFE26 /* MapViewController.swift in Sources */,
+				DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */,
+				DB0B25C1289E8464005DFE26 /* NewsConfiguration.swift in Sources */,
+				DB0B25A8289B3940005DFE26 /* ScheduleRouter.swift in Sources */,
+				DB0B25B3289B3959005DFE26 /* MapPresenter.swift in Sources */,
+				DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */,
+				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
+				DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */,
+				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
+				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,
+				DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */,
+				DB0B259D289B392D005DFE26 /* NewsModels.swift in Sources */,
+				DB0B259B289B392D005DFE26 /* NewsWorker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB0B2580289B37B1005DFE26 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB0B2583289B37B1005DFE26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB0B2584289B37B1005DFE26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB0B2586289B37B1005DFE26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G47V947RVA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MIREA Application/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.kpigalkin.MIREA-Application";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB0B2587289B37B1005DFE26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G47V947RVA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MIREA Application/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.kpigalkin.MIREA-Application";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB0B256C289B37B0005DFE26 /* Build configuration list for PBXProject "MIREA Application" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0B2583289B37B1005DFE26 /* Debug */,
+				DB0B2584289B37B1005DFE26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB0B2585289B37B1005DFE26 /* Build configuration list for PBXNativeTarget "MIREA Application" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0B2586289B37B1005DFE26 /* Debug */,
+				DB0B2587289B37B1005DFE26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB0B2569289B37B0005DFE26 /* Project object */;
+}
