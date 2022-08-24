@@ -30,11 +30,30 @@ enum NewsModels
     typealias Response = [ResponseItem]
       
     struct ViewModel {
-        let news: [NewsCollectionItem]
+        let element: [NewsCollectionItem]
         
+        // added init for "_ .." in call
         init(_ news: [NewsCollectionItem]) {
-            self.news = news
+            self.element = news  
         }
     }
   }
+    
+    enum SpecificNews {
+        struct Request {
+            let id: Int
+        }
+        struct Response: Codable {
+            let id: Int
+            let title, date, text: String
+            let image: String
+            let url: String
+        }
+        struct ViewModel {
+            let id: Int
+            let title, date, text: String
+            let image: String
+            let url: String
+        }
+    }
 }

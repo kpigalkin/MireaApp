@@ -7,11 +7,20 @@
 
 import UIKit
 
-class NavigationController: UINavigationController {
+final class NavigationController: UINavigationController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func loadView() {
+        super.loadView()
+        
+        // Making navBar is Opaque
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = Colors.defaultTheme.sand
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+        }
     }
 }

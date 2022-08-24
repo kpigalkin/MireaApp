@@ -17,7 +17,7 @@ protocol SchedulePresentationLogic
   func presentSomething(response: Schedule.Something.Response)
 }
 
-class SchedulePresenter: SchedulePresentationLogic
+final class SchedulePresenter: SchedulePresentationLogic
 {
   weak var viewController: ScheduleDisplayLogic?
   

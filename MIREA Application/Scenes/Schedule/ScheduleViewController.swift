@@ -12,12 +12,12 @@
 
 import UIKit
 
-protocol ScheduleDisplayLogic: class
+protocol ScheduleDisplayLogic: AnyObject
 {
   func displaySomething(viewModel: Schedule.Something.ViewModel)
 }
 
-class ScheduleViewController: UIViewController, ScheduleDisplayLogic
+final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
 {
   var interactor: ScheduleBusinessLogic?
   var router: (NSObjectProtocol & ScheduleRoutingLogic & ScheduleDataPassing)?
@@ -71,7 +71,22 @@ class ScheduleViewController: UIViewController, ScheduleDisplayLogic
     super.viewDidLoad()
     doSomething()
   }
-  
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setGradientBackground()
+    }
+    func setGradientBackground() {
+        let colorTop = Colors.defaultTheme.sand.cgColor
+        let colorBottom = Colors.defaultTheme.darkBlue.cgColor
+                    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.4, 0.6]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!

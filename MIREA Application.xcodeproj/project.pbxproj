@@ -35,6 +35,8 @@
 		DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BB289E7870005DFE26 /* NewsView.swift */; };
 		DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */; };
 		DB0B25C1289E8464005DFE26 /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */; };
+		DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */; };
+		DBE10E8328B2249B00F48672 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		DB0B25BB289E7870005DFE26 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionItem.swift; sourceTree = "<group>"; };
 		DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
+		DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificNewsVC.swift; sourceTree = "<group>"; };
+		DBE10E8228B2249B00F48672 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */,
 				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
 				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
+				DBE10E8228B2249B00F48672 /* Colors.swift */,
 				DB0B2590289B38F7005DFE26 /* Scenes */,
 			);
 			path = "MIREA Application";
@@ -151,6 +156,7 @@
 		DB0B2593289B3919005DFE26 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */,
 				DB0B2596289B392D005DFE26 /* NewsRouter.swift */,
 				DB0B2597289B392D005DFE26 /* NewsModels.swift */,
 				DB0B2594289B392D005DFE26 /* NewsPresenter.swift */,
@@ -166,9 +172,9 @@
 		DB0B25BD289E825F005DFE26 /* UICollection */ = {
 			isa = PBXGroup;
 			children = (
+				DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */,
 				DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */,
 				DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */,
-				DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */,
 			);
 			path = UICollection;
 			sourceTree = "<group>";
@@ -248,6 +254,7 @@
 				DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */,
 				DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */,
 				DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */,
+				DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */,
 				DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */,
 				DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */,
 				DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */,
@@ -264,6 +271,7 @@
 				DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */,
 				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
 				DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */,
+				DBE10E8328B2249B00F48672 /* Colors.swift in Sources */,
 				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
 				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,
 				DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */,

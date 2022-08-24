@@ -12,7 +12,7 @@
 
 import UIKit
 
-class ScheduleWorker
+final class ScheduleWorker
 {
   func doSomeWork()
   {

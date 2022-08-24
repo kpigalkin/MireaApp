@@ -11,14 +11,43 @@ enum Section: Int {
     case news
 }
 
+class NewsCell: UICollectionViewCell {
+    var id : Int?
+}
+
+
 final class NewsView: UIView, UICollectionViewDelegate {
     
-    private let newsItemRegistration = UICollectionView.CellRegistration<UICollectionViewCell, NewsConfiguration> { cell, indexPath, itemIdentifier in
+    weak var newsViewControllerDelegate: NewsViewControllerDelegate?
+    static var imageDictionary = [Int: UIImage]()
+    
+    private let newsCellRegistration = UICollectionView.CellRegistration<NewsCell, NewsConfiguration> { cell, indexPath, itemConfiguration in
             cell.contentConfiguration = nil
-            cell.contentConfiguration = itemIdentifier
-        
-            
+            var newConfiguration = itemConfiguration
+            cell.id = newConfiguration.id
+    
+        // MARK: Checking out already-downloaded images in <imageDictionary>
+        print("⚡️set imagiz")
+        let imageExists = imageDictionary[newConfiguration.id] != nil
+        if imageExists {
+            newConfiguration.image = imageDictionary[newConfiguration.id]
         }
+        else {
+            let defaultImage = UIImage(named: "rtu-mirea-image")
+            DispatchQueue.global().async {
+                do {
+                    let imgData = try Data(contentsOf: itemConfiguration.imageUrl)
+                    let img = UIImage(data: imgData)
+                    newConfiguration.image = img ?? defaultImage!
+                    imageDictionary[itemConfiguration.id] = newConfiguration.image
+                }
+                catch {
+                    print("Error: image with title \(newConfiguration.name) isn't setted")
+                }
+            }
+        }
+        cell.contentConfiguration = newConfiguration
+    }
     
     private lazy var dataSourse = makeDataSource()
     
@@ -26,27 +55,33 @@ final class NewsView: UIView, UICollectionViewDelegate {
         let view = UICollectionView(
             frame: .zero,
             collectionViewLayout: NewsCollectionViewLayoutFactory.newsFeedLayout())
-
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-//        view.backgroundColor = .gray
+        view.register(NewsCell.self, forCellWithReuseIdentifier: "cell")
         view.delegate = self
+        view.showsVerticalScrollIndicator = false
         return view
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
-//        backgroundColor = .magenta
         
         addSubview(collectionView)
         makeConstraints()
-        createSections()
+        makeSnapshot()
         self.collectionView.delegate = self
+//        self.collectionView.backgroundColor = Colors.redBlueTheme.dirtyWhite
+        self.collectionView.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("🙋🏻‍♂️ user selected item at \(indexPath)")
+        let cell = collectionView.cellForItem(at: indexPath) as? NewsCell
+        let id = cell?.id
+        newsViewControllerDelegate?.userSelectedCell(indexPath: indexPath, id: id ?? 1)
+    }
 }
 
 private extension NewsView {
@@ -56,12 +91,12 @@ private extension NewsView {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor)
         ])
     }
     
-    func createSections() {
+    func makeSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, NewsCollectionItem>()
         snapshot.appendSections([.news])
         dataSourse.apply(snapshot)
@@ -76,7 +111,7 @@ private extension NewsView {
             }
             switch item.content {
             case .news(config: let configuration):
-                return collectionView.dequeueConfiguredReusableCell(using: self.newsItemRegistration, for: indexPath, item: configuration)
+                return collectionView.dequeueConfiguredReusableCell(using: self.newsCellRegistration, for: indexPath, item: configuration)
             }
         }
         return dataSource
@@ -87,7 +122,8 @@ extension NewsView: NewsViewDelegate {
     func showNews(_ news: NewsModels.News.ViewModel) {
         print("⭕️ showNews in NewsView)")
         var snapshot = dataSourse.snapshot()
-        snapshot.appendItems(news.news, toSection: .news)
+        snapshot.appendItems(news.element, toSection: .news)
+        
         dataSourse.apply(snapshot)
     }
 }
@@ -95,3 +131,4 @@ extension NewsView: NewsViewDelegate {
 protocol NewsViewDelegate: AnyObject {
     func showNews(_ news: NewsModels.News.ViewModel)
 }
+

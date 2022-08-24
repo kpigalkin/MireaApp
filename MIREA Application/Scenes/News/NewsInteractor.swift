@@ -13,32 +13,50 @@
 import UIKit
 
 protocol NewsBusinessLogic {
-    func getResponseFromMireaServer(request: NewsModels.News.Request)
+    func getNewsFromServer(request: NewsModels.News.Request)
+    func getSpecificNews(request: NewsModels.SpecificNews.Request)
 }
 
 protocol NewsDataStore
 {
-  //var name: String { get set }
+//  var image: UIImage { get set }
 }
 
 final class NewsInteractor: NewsBusinessLogic, NewsDataStore {
-    
+
   var presenter: NewsPresentationLogic?
   var worker: NewsWorker?
   let domain = "https://tt-mosit.mirea.ru"
   
   // MARK: Do something
   
-    func getResponseFromMireaServer(request: NewsModels.News.Request) {
-        print("⭕️ getResponseFromMireaServer in NewsViewController")
+    func getNewsFromServer(request: NewsModels.News.Request) {
+        print("⭕️ getNewsFromServer in NewsViewController")
         
         let url = URL(string: domain + request.path)
+        
         let request = URLRequest(url: url!)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data, let news = try? JSONDecoder().decode(NewsModels.News.Response.self, from: data) {
+//                print("news \(news)")
                 self.presenter?.presentNews(response: news)
             }
         }
         task.resume()
-  }
+    }
+    
+    func getSpecificNews(request: NewsModels.SpecificNews.Request) {
+        print("⭕️ getSpecificNews in NewsViewController")
+
+        let url = URL(string: domain + "/news/" + String(request.id))
+        let request = URLRequest(url: url!)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data, let news = try? JSONDecoder().decode(NewsModels.SpecificNews.Response.self, from: data) {
+//                let x = news.text
+//                print("Specnews \(x)")
+                self.presenter?.presentSpecificNews(response: news)
+            }
+        }
+        task.resume()
+    }
 }

@@ -22,7 +22,7 @@ protocol ScheduleDataStore
   //var name: String { get set }
 }
 
-class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore
+final class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore
 {
   var presenter: SchedulePresentationLogic?
   var worker: ScheduleWorker?

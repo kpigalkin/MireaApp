@@ -12,9 +12,33 @@
 
 import UIKit
 
-final class NewsWorker
-{
-  func doSomeWork()
-  {
-  }
+final class NewsWorker {
+
+    // MARK: Do Something
+//    func fetchNewsData(url: URL) async throws -> NewsModels.News.Response {
+//        do {
+//            let (data,_) = try await URLSession.shared.data(from: url)
+//            let news = try JSONDecoder().decode(NewsModels.News.Response.self, from: data)
+//            return news
+//        }
+//        catch {
+//            print("❌ Error: No news from server")
+//            return [] as NewsModels.News.Response
+//        }
+//    }
+//
+//    func fetchSpecificNews(url: URL) async throws -> NewsModels.SpecificNews.Response {
+//        do {
+//            let (data,_) = try await URLSession.shared.data(from: url)
+//            let news = try JSONDecoder().decode(NewsModels.SpecificNews.Response.self, from: data)
+//            return news
+//        }
+//        catch {
+//            print("❌ Error: No specific news from server")
+//            let error = NewsModels.SpecificNews.Response.init(id: 0, title: "Empty", date: "Empty", text: "Empty", image: "Empty", url: "Empty")
+//            return error
+//        }
+//    }
+
+
 }
