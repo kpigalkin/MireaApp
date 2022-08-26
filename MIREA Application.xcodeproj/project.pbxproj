@@ -14,13 +14,11 @@
 		DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B258A289B37D0005DFE26 /* NavigationViewController.swift */; };
 		DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B258B289B37D0005DFE26 /* TabBarController.swift */; };
 		DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2594289B392D005DFE26 /* NewsPresenter.swift */; };
-		DB0B259B289B392D005DFE26 /* NewsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2595289B392D005DFE26 /* NewsWorker.swift */; };
 		DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2596289B392D005DFE26 /* NewsRouter.swift */; };
 		DB0B259D289B392D005DFE26 /* NewsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2597289B392D005DFE26 /* NewsModels.swift */; };
 		DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2598289B392D005DFE26 /* NewsViewController.swift */; };
 		DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2599289B392D005DFE26 /* NewsInteractor.swift */; };
 		DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */; };
-		DB0B25A7289B3940005DFE26 /* ScheduleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A1289B3940005DFE26 /* ScheduleWorker.swift */; };
 		DB0B25A8289B3940005DFE26 /* ScheduleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */; };
 		DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */; };
 		DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */; };
@@ -34,7 +32,11 @@
 		DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */; };
 		DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BB289E7870005DFE26 /* NewsView.swift */; };
 		DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */; };
-		DB0B25C1289E8464005DFE26 /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */; };
+		DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsContentView.swift */; };
+		DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */; };
+		DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */; };
+		DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */; };
+		DBE10E8328B2249B00F48672 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,13 +49,11 @@
 		DB0B258A289B37D0005DFE26 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		DB0B258B289B37D0005DFE26 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DB0B2594289B392D005DFE26 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
-		DB0B2595289B392D005DFE26 /* NewsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWorker.swift; sourceTree = "<group>"; };
 		DB0B2596289B392D005DFE26 /* NewsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
 		DB0B2597289B392D005DFE26 /* NewsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModels.swift; sourceTree = "<group>"; };
 		DB0B2598289B392D005DFE26 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		DB0B2599289B392D005DFE26 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
-		DB0B25A1289B3940005DFE26 /* ScheduleWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWorker.swift; sourceTree = "<group>"; };
 		DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRouter.swift; sourceTree = "<group>"; };
 		DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModels.swift; sourceTree = "<group>"; };
 		DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +67,11 @@
 		DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
 		DB0B25BB289E7870005DFE26 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionItem.swift; sourceTree = "<group>"; };
-		DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
+		DB0B25C0289E8464005DFE26 /* NewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentView.swift; sourceTree = "<group>"; };
+		DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
+		DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificNewsVC.swift; sourceTree = "<group>"; };
+		DBE10E8228B2249B00F48672 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */,
 				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
 				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
+				DBE10E8228B2249B00F48672 /* Colors.swift */,
 				DB0B2590289B38F7005DFE26 /* Scenes */,
 			);
 			path = "MIREA Application";
@@ -139,11 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */,
-				DB0B25A1289B3940005DFE26 /* ScheduleWorker.swift */,
 				DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */,
 				DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */,
-				DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */,
 				DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */,
+				DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */,
+				DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -151,10 +156,10 @@
 		DB0B2593289B3919005DFE26 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */,
 				DB0B2596289B392D005DFE26 /* NewsRouter.swift */,
 				DB0B2597289B392D005DFE26 /* NewsModels.swift */,
 				DB0B2594289B392D005DFE26 /* NewsPresenter.swift */,
-				DB0B2595289B392D005DFE26 /* NewsWorker.swift */,
 				DB0B2599289B392D005DFE26 /* NewsInteractor.swift */,
 				DB0B2598289B392D005DFE26 /* NewsViewController.swift */,
 				DB0B25BB289E7870005DFE26 /* NewsView.swift */,
@@ -166,9 +171,10 @@
 		DB0B25BD289E825F005DFE26 /* UICollection */ = {
 			isa = PBXGroup;
 			children = (
+				DB0B25C0289E8464005DFE26 /* NewsContentView.swift */,
 				DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */,
 				DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */,
-				DB0B25C0289E8464005DFE26 /* NewsConfiguration.swift */,
+				DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */,
 			);
 			path = UICollection;
 			sourceTree = "<group>";
@@ -248,27 +254,29 @@
 				DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */,
 				DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */,
 				DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */,
+				DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */,
+				DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */,
 				DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */,
 				DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */,
 				DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */,
 				DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */,
 				DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */,
+				DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */,
 				DB0B25B8289B3959005DFE26 /* MapInteractor.swift in Sources */,
 				DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */,
-				DB0B25A7289B3940005DFE26 /* ScheduleWorker.swift in Sources */,
 				DB0B25B7289B3959005DFE26 /* MapViewController.swift in Sources */,
 				DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */,
-				DB0B25C1289E8464005DFE26 /* NewsConfiguration.swift in Sources */,
+				DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */,
 				DB0B25A8289B3940005DFE26 /* ScheduleRouter.swift in Sources */,
 				DB0B25B3289B3959005DFE26 /* MapPresenter.swift in Sources */,
 				DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */,
 				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
 				DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */,
+				DBE10E8328B2249B00F48672 /* Colors.swift in Sources */,
 				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
 				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,
 				DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */,
 				DB0B259D289B392D005DFE26 /* NewsModels.swift in Sources */,
-				DB0B259B289B392D005DFE26 /* NewsWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

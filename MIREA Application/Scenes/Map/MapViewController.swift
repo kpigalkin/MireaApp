@@ -13,20 +13,16 @@
 import UIKit
 import WebKit
 
-protocol MapDisplayLogic: class
+protocol MapDisplayLogic: AnyObject
 {
   func displaySomething(viewModel: Map.Something.ViewModel)
 }
 
-class MapViewController: UIViewController, MapDisplayLogic, WKUIDelegate
+final class MapViewController: UIViewController, MapDisplayLogic, WKUIDelegate
 {
     var interactor: MapBusinessLogic?
     var router: (NSObjectProtocol & MapRoutingLogic & MapDataPassing)?
     var webView: WKWebView!
-    
-    
-    
-    
 
   // MARK: Object lifecycle
   
@@ -124,9 +120,8 @@ private extension MapViewController {
         webView.scrollView.minimumZoomScale = 1.0
         webView.scrollView.maximumZoomScale = 5.0
         webView.configuration.userContentController.addUserScript(getZoomDisableScript())
+        
         view = webView
-        
-        
     }
     
     func loadRequest() {
@@ -135,11 +130,22 @@ private extension MapViewController {
         webView.load(myRequest)
     }
     
-    func getZoomDisableScript() -> WKUserScript {
+    func getZooomDisableScript() -> WKUserScript {
         let source: String = "var meta = document.createElement('meta');" +
             "meta.name = 'viewport';" +
             "meta.content = 'width=device-width, initial-scale=1.0, maximum- scale=1.0, user-scalable=no';" +
             "var head = document.getElementsByTagName('head')[0];" + "head.appendChild(meta);"
+        return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+    }
+    
+    func getZoomDisableScript() -> WKUserScript {
+        let source: String = """
+            var meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, initial-scale=1.0, maximum- scale=1.0, user-scalable=no';
+            var head = document.getElementsByTagName('head')[0];
+            head.appendChild(meta);
+        """
         return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
     }
 }

@@ -17,7 +17,7 @@ protocol MapPresentationLogic
   func presentSomething(response: Map.Something.Response)
 }
 
-class MapPresenter: MapPresentationLogic
+final class MapPresenter: MapPresentationLogic
 {
   weak var viewController: MapDisplayLogic?
   

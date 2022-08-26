@@ -12,7 +12,7 @@
 
 import UIKit
 
-class MapWorker
+final class MapWorker
 {
   func doSomeWork()
   {

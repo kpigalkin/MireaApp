@@ -14,26 +14,17 @@ import UIKit
 
 protocol ScheduleBusinessLogic
 {
-  func doSomething(request: Schedule.Something.Request)
+  func getTeacherslist(request: Schedule.Something.Request)
 }
 
-protocol ScheduleDataStore
-{
-  //var name: String { get set }
-}
-
-class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore
-{
+final class ScheduleInteractor: ScheduleBusinessLogic {
   var presenter: SchedulePresentationLogic?
-  var worker: ScheduleWorker?
-  //var name: String = ""
-  
+    
+    
   // MARK: Do something
   
-  func doSomething(request: Schedule.Something.Request)
-  {
-    worker = ScheduleWorker()
-    worker?.doSomeWork()
+  func getTeacherslist(request: Schedule.Something.Request) {
+   
     
     let response = Schedule.Something.Response()
     presenter?.presentSomething(response: response)

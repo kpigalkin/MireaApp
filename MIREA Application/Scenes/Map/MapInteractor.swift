@@ -22,7 +22,7 @@ protocol MapDataStore
   //var name: String { get set }
 }
 
-class MapInteractor: MapBusinessLogic, MapDataStore
+final class MapInteractor: MapBusinessLogic, MapDataStore
 {
   var presenter: MapPresentationLogic?
   var worker: MapWorker?
