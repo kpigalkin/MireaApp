@@ -22,31 +22,9 @@ final class NewsView: UIView, UICollectionViewDelegate {
     static var imageDictionary = [Int: UIImage]()
     
     private let newsCellRegistration = UICollectionView.CellRegistration<NewsCell, NewsConfiguration> { cell, indexPath, itemConfiguration in
-            cell.contentConfiguration = nil
-            var newConfiguration = itemConfiguration
-            cell.id = newConfiguration.id
-    
-        // MARK: Checking out already-downloaded images in <imageDictionary>
-        print("⚡️set imagiz")
-        let imageExists = imageDictionary[newConfiguration.id] != nil
-        if imageExists {
-            newConfiguration.image = imageDictionary[newConfiguration.id]
-        }
-        else {
-            let defaultImage = UIImage(named: "rtu-mirea-image")
-            DispatchQueue.global().async {
-                do {
-                    let imgData = try Data(contentsOf: itemConfiguration.imageUrl)
-                    let img = UIImage(data: imgData)
-                    newConfiguration.image = img ?? defaultImage!
-                    imageDictionary[itemConfiguration.id] = newConfiguration.image
-                }
-                catch {
-                    print("Error: image with title \(newConfiguration.name) isn't setted")
-                }
-            }
-        }
-        cell.contentConfiguration = newConfiguration
+        cell.contentConfiguration = nil
+        cell.id = itemConfiguration.id
+        cell.contentConfiguration = itemConfiguration
     }
     
     private lazy var dataSourse = makeDataSource()
@@ -68,8 +46,8 @@ final class NewsView: UIView, UICollectionViewDelegate {
         makeConstraints()
         makeSnapshot()
         self.collectionView.delegate = self
-//        self.collectionView.backgroundColor = Colors.redBlueTheme.dirtyWhite
         self.collectionView.backgroundColor = .clear
+        print("⭕️ init in NewsView")
     }
     
     required init?(coder: NSCoder) {
@@ -116,6 +94,33 @@ private extension NewsView {
         }
         return dataSource
     }
+    
+//    func uploadImage() {
+//        // MARK: Checking out already-downloaded images in <imageDictionary>
+//        let imageExists = imageDictionary[newConfiguration.id] != nil
+//        if imageExists {
+//            newConfiguration.image = imageDictionary[newConfiguration.id]
+//            print("🌄 image already exists")
+//        }
+//        else {
+//            let defaultImage = UIImage(named: "rtu-mirea-image")
+//            DispatchQueue.global().async {
+//                do {
+//                    let imgData = try Data(contentsOf: itemConfiguration.imageUrl)
+//                    let img = UIImage(data: imgData)
+//                    newConfiguration.image = img ?? defaultImage!
+//                    DispatchQueue.main.async {
+//                        imageDictionary[itemConfiguration.id] = newConfiguration.image
+//                        print("🌄 image downloaded and setted")
+//                    }
+//                }
+//                catch {
+//                    print("Error: image with title \(newConfiguration.name) isn't setted")
+//                }
+//            }
+//        }
+//
+//    }
 }
 
 extension NewsView: NewsViewDelegate {

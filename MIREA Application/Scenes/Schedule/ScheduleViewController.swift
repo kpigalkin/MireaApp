@@ -12,8 +12,7 @@
 
 import UIKit
 
-protocol ScheduleDisplayLogic: AnyObject
-{
+protocol ScheduleDisplayLogic: AnyObject {
   func displaySomething(viewModel: Schedule.Something.ViewModel)
 }
 
@@ -21,6 +20,7 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
 {
   var interactor: ScheduleBusinessLogic?
   var router: (NSObjectProtocol & ScheduleRoutingLogic & ScheduleDataPassing)?
+    var scheduleView = ScheduleView()
 
   // MARK: Object lifecycle
   
@@ -38,8 +38,7 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
   
   // MARK: Setup
   
-  private func setup()
-  {
+  private func setup() {
     let viewController = self
     let interactor = ScheduleInteractor()
     let presenter = SchedulePresenter()
@@ -54,51 +53,43 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
   
   // MARK: Routing
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
-    }
-  }
+  
   
   // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
+    
+    override func loadView() {
+        view = scheduleView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doSomething()
+    }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setGradientBackground()
     }
+    
     func setGradientBackground() {
         let colorTop = Colors.defaultTheme.sand.cgColor
         let colorBottom = Colors.defaultTheme.darkBlue.cgColor
                     
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.4, 0.6]
+        gradientLayer.locations = [0.2, 0.85]
         gradientLayer.frame = self.view.bounds
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
     }
+    
   // MARK: Do something
+    func doSomething() {
+        let request = Schedule.Something.Request()
+        interactor?.doSomething(request: request)
+    }
   
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Schedule.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Schedule.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    func displaySomething(viewModel: Schedule.Something.ViewModel) {
+        //nameTextField.text = viewModel.name
+    }
 }

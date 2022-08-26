@@ -39,7 +39,9 @@ final class NewsInteractor: NewsBusinessLogic, NewsDataStore {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data, let news = try? JSONDecoder().decode(NewsModels.News.Response.self, from: data) {
 //                print("news \(news)")
-                self.presenter?.presentNews(response: news)
+                DispatchQueue.main.async {
+                    self.presenter?.presentNews(response: news)
+                }
             }
         }
         task.resume()
@@ -54,7 +56,9 @@ final class NewsInteractor: NewsBusinessLogic, NewsDataStore {
             if let data = data, let news = try? JSONDecoder().decode(NewsModels.SpecificNews.Response.self, from: data) {
 //                let x = news.text
 //                print("Specnews \(x)")
-                self.presenter?.presentSpecificNews(response: news)
+                DispatchQueue.main.async {
+                    self.presenter?.presentSpecificNews(response: news)
+                }
             }
         }
         task.resume()

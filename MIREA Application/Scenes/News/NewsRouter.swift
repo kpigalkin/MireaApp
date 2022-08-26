@@ -30,11 +30,7 @@ final class NewsRouter: NSObject, NewsRoutingLogic, NewsDataPassing {
     func displaySpecificNews(viewModel: NewsModels.SpecificNews.ViewModel) {
         print("⭕️ displaySpecificNews in NewsRouter")
         self.passData(viewModel: viewModel)
-        DispatchQueue.main.sync {
-//            self.viewController?.navigationController?.pushViewController(self.specificNewsVC, animated: true)
-            self.viewController?.navigationController?.present(self.specificNewsVC, animated: true)
-            
-        }
+        self.viewController?.navigationController?.pushViewController(self.specificNewsVC, animated: true)
     }
 
   // MARK: Navigation

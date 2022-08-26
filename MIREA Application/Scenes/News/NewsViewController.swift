@@ -12,8 +12,12 @@
 
 import UIKit
 
-protocol NewsDisplayLogic: AnyObject
-{
+
+protocol NewsViewControllerDelegate: AnyObject {
+    func userSelectedCell(indexPath: IndexPath, id: Int)
+}
+
+protocol NewsDisplayLogic: AnyObject {
   func displayNews(viewModel: NewsModels.News.ViewModel)
   func displaySpecificNews(viewModel: NewsModels.SpecificNews.ViewModel)
 }
@@ -22,7 +26,7 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
     var interactor: NewsBusinessLogic?
     var router: (NSObjectProtocol & NewsRoutingLogic & NewsDataPassing)?
     weak var newsViewDelegate: NewsViewDelegate?
-    var collectionView = NewsView()
+    var newsView = NewsView()
 
   // MARK: Object lifecycle
   
@@ -54,31 +58,25 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
     router.viewController = viewController
     router.dataStore = interactor
     
-    collectionView.newsViewControllerDelegate = self
-    newsViewDelegate = collectionView
+    newsView.newsViewControllerDelegate = self
+    newsViewDelegate = newsView
     navigationItem.title = "News"
 
   }
   
   // MARK: Routing
   
-//    func routeToNewsElement(viewModel: NewsModels.SpecificNews.ViewModel) {
-//
-//        router?.displaySpecificNews(viewModel: viewModel)
-//  }
-  
   // MARK: View lifecycle
     
     override func loadView() {
         print("⭕️ loadView in NewsViewController")
-        view = collectionView
+        view = newsView
         makeRequest()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setGradientBackground()
-//        Colors.setGradientBackground(self.view)
     }
     
     func setGradientBackground() {
@@ -87,7 +85,7 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
                     
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.2, 1.2]
+        gradientLayer.locations = [0.2, 1.15]
         gradientLayer.frame = self.view.bounds
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
@@ -121,6 +119,3 @@ extension NewsViewController: NewsViewControllerDelegate {
     }
 }
 
-protocol NewsViewControllerDelegate: AnyObject {
-    func userSelectedCell(indexPath: IndexPath, id: Int)
-}

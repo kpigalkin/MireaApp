@@ -44,7 +44,14 @@ final class NewsPresenter: NewsPresentationLogic {
     func presentSpecificNews(response: NewsModels.SpecificNews.Response) {
         print("⭕️ presentSpecificNews in NewsPresenter")
 
-       let viewModel = NewsModels.SpecificNews.ViewModel.init(id: response.id, title: response.title, date: response.date, text: response.text, image: response.image, url: response.url)
+       let viewModel = NewsModels.SpecificNews.ViewModel.init(
+            id: response.id,
+            title: response.title,
+            date: response.date,
+            text: response.text,
+            image: response.image,
+            url: response.url
+       )
         viewController?.displaySpecificNews(viewModel: viewModel)        
     }
 }

@@ -19,8 +19,8 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 25, weight: .semibold)
-        label.textColor = .label
+        label.font = .systemFont(ofSize: 25, weight: .heavy)
+        label.textColor = .black.withAlphaComponent(0.7)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -30,7 +30,7 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
     private let textLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = .label
+        label.textColor = .label.withAlphaComponent(0.8)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.backgroundColor = .clear
@@ -63,6 +63,7 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
         addSubviews()
         makeConstraints()
         setupZoom()
+        setGradientBackground()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -141,9 +142,9 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
         // MARK: Checking out already-downloaded images in <imageDictionary>
         let id = data?.id ?? 0
         
-        let imageExists = NewsView.imageDictionary[id] != nil
+        let imageExists = NewsContentView.imageDictionary[id] != nil
         if imageExists {
-            picture.image = NewsView.imageDictionary[id]
+            picture.image = NewsContentView.imageDictionary[id]
         }
         else {
             let defaultImage = UIImage(named: "rtu-mirea-image")
@@ -153,11 +154,11 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
                         let data = try Data(contentsOf: url)
                         let img = UIImage(data: data)
                         picture.image = img ?? defaultImage!
-                        NewsView.imageDictionary[id] = picture.image
+                        NewsContentView.imageDictionary[id] = picture.image
                     }
                 }
                 catch {
-                    print("Error: Specific image with title \(self.data?.id ?? 0) isn't setted")
+                    print("Error: Specific image with id \(self.data?.id ?? 0) isn't setted")
                 }
             }
         }
@@ -175,21 +176,25 @@ extension SpecificNewsVC {
     func formatingText(text: String?) -> String {
         guard let text = text else { return "" }
         var finalText: String = ""
+        let space = "    "
 
-//        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-//        let characterset = CharacterSet(charactersIn: <#T##Range<Unicode.Scalar>#>)
-//
-//
-//        if text.rangeOfCharacter(from: characterset.inverted) != nil {
-//            print("string contains special characters")
-//
-//        }
         let _ = text.components(separatedBy: "⠀").map({
-            finalText += $0 + "\n\n"
+            finalText += $0 + "\n\n" + space
         })
-//        print(finalText)
         
-        return finalText
+        return space + finalText
+    }
+    
+    func setGradientBackground() {
+        let colorTop = Colors.defaultTheme.sand.cgColor
+        let colorBottom = Colors.defaultTheme.darkBlue.cgColor
+                    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.3, 1.3]
+        gradientLayer.frame = self.view.bounds
+                
+        self.view.layer.insertSublayer(gradientLayer, at:0)
     }
 }
     
