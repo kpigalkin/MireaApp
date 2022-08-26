@@ -48,12 +48,12 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
     let interactor = NewsInteractor()
     let presenter = NewsPresenter()
     let router = NewsRouter()
-    let worker = NewsWorker()
+//    let worker = NewsWorker()
 
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
-    interactor.worker = worker
+//    interactor.worker = worker
     presenter.viewController = viewController
     router.viewController = viewController
     router.dataStore = interactor

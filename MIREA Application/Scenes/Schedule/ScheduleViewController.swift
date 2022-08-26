@@ -19,7 +19,7 @@ protocol ScheduleDisplayLogic: AnyObject {
 final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
 {
   var interactor: ScheduleBusinessLogic?
-  var router: (NSObjectProtocol & ScheduleRoutingLogic & ScheduleDataPassing)?
+  var router: (NSObjectProtocol & ScheduleRoutingLogic)?
     var scheduleView = ScheduleView()
 
   // MARK: Object lifecycle
@@ -48,7 +48,7 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
     interactor.presenter = presenter
     presenter.viewController = self
     router.viewController = self
-    router.dataStore = interactor
+//    router.dataStore = interactor
   }
   
   // MARK: Routing
@@ -86,7 +86,7 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
   // MARK: Do something
     func doSomething() {
         let request = Schedule.Something.Request()
-        interactor?.doSomething(request: request)
+//        interactor?.doSomething(request: request)
     }
   
     func displaySomething(viewModel: Schedule.Something.ViewModel) {

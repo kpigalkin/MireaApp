@@ -17,15 +17,9 @@ import UIKit
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol ScheduleDataPassing
-{
-  var dataStore: ScheduleDataStore? { get }
-}
-
-final class ScheduleRouter: NSObject, ScheduleRoutingLogic, ScheduleDataPassing
+final class ScheduleRouter: NSObject, ScheduleRoutingLogic
 {
   weak var viewController: ScheduleViewController?
-  var dataStore: ScheduleDataStore?
   
   // MARK: Routing
   

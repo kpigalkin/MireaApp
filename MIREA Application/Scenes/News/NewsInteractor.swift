@@ -25,7 +25,7 @@ protocol NewsDataStore
 final class NewsInteractor: NewsBusinessLogic, NewsDataStore {
 
   var presenter: NewsPresentationLogic?
-  var worker: NewsWorker?
+//  var worker: NewsWorker?
   let domain = "https://tt-mosit.mirea.ru"
   
   // MARK: Do something
