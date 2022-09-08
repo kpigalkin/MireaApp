@@ -64,12 +64,13 @@ final class NewsContentView: UIView, UIContentView {
             DispatchQueue.global().async {
                 do {
                     let data = try Data(contentsOf: content.imageUrl)
-                    let image = UIImage(data: data)
-                    NewsContentView.imageDictionary[content.id] = image
-                    DispatchQueue.main.async {
-                        self.picture.image = image
-                        self.aspectRatio = self.picture.image!.size.width / self.picture.image!.size.height
-                        print("🌄⬆ image downloaded and setted")
+                    if let image = UIImage(data: data) {
+                        NewsContentView.imageDictionary[content.id] = image // Error sometimes
+                        DispatchQueue.main.async {
+                            self.picture.image = image
+                            self.aspectRatio = self.picture.image!.size.width / self.picture.image!.size.height
+                            print("🌄⬆ image downloaded and setted")
+                        }
                     }
                 }
                 catch {
@@ -77,7 +78,7 @@ final class NewsContentView: UIView, UIContentView {
                 }
             }
         }
-        print("✄ cellConfigured")
+//        print("✄ cellConfigured")
     }
     
     private func addSubviews() {

@@ -7,17 +7,14 @@
 
 import UIKit
 
-enum Constants {
-    static let padding: CGFloat = 10
-    static let heightPadding: CGFloat = 20
-}
+
 
 public struct NewsCollectionViewLayoutFactory {
     
     static func newsFeedLayout() -> UICollectionViewCompositionalLayout {
             
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            guard let _ = Section.init(rawValue: sectionIndex) else {
+            guard let _ = NewsSection.init(rawValue: sectionIndex) else {
                 fatalError("Section layout is not implemented :(")
             }
             return self.createNewsSectionLayout()
@@ -36,9 +33,7 @@ extension NewsCollectionViewLayoutFactory {
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(300))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-//        NSCollectionLayoutGroupCustomItemProvider
-        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])        
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = Constants.heightPadding * 2

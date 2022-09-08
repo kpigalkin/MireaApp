@@ -12,20 +12,53 @@
 
 import UIKit
 
-enum Schedule
-{
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
-    {
+enum ScheduleModels {
+    
+    enum Teachers {
+        struct Request {
+            //
+        }
+      
+        typealias Response = [ResponseElement]
+        struct ResponseElement: Codable {
+            let id: Int
+            let name: String
+        }
+          
+        typealias ViewModel = [ResponseElement]
     }
-    struct Response
-    {
+    
+    enum Classes {
+        struct Request {
+            let weekDay, weekNumber: Int
+        }
+        
+        struct ResponseValue: Codable {
+            let even, odd: [Subject]
+        }
+        struct Subject: Codable {
+            let name, room, type, group, strWeeks: String
+            let number, wdNum: Int
+            let weeks: [Int]
+
+            private enum CodingKeys: String, CodingKey {
+                case name, number
+                case wdNum = "wd_num"
+                case group, type, room, weeks, strWeeks
+            }
+        }
+        typealias ResponseItems = [[String: ResponseValue]]
+        
+        struct Response {
+            let dayClasses: ResponseItems
+            let dayInfo: Request
+        }
+        
+//        struct ViewModel {
+//
+//        }
+        typealias ViewModel = [Subject]
     }
-    struct ViewModel
-    {
-    }
-  }
+    
 }
+

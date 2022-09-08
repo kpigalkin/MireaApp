@@ -8,6 +8,22 @@
 import Foundation
 import UIKit
 
+enum Constants {
+    static let padding: CGFloat = 10
+    static let heightPadding: CGFloat = 20
+}
+
+//enum APIConstants {
+//    static let domain: String = ""
+//    static let newsPath: String
+//}
+
+enum UDKeys {
+    static let id = "id"
+    static let name = "name"
+}
+
+
 enum Colors {
     struct secondTheme {
         static let clearWhite = UIColor(hexString: "#ffffff")
@@ -26,18 +42,6 @@ enum Colors {
         static let black = UIColor(hexString: "#222222")
 
     }
-    func setGradientBackground(view: UIView) {
-        let colorTop = Colors.defaultTheme.sand.cgColor
-        let colorBottom = Colors.defaultTheme.darkBlue.cgColor
-                    
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = view.bounds
-                
-        view.layer.insertSublayer(gradientLayer, at:0)
-    }
-            
 }
 
 extension UIColor {

@@ -9,7 +9,16 @@ import UIKit
 
 final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
     
-    var data: NewsModels.SpecificNews.ViewModel?
+    var data: NewsModels.SpecificNews.ViewModel
+    
+    init(data: NewsModels.SpecificNews.ViewModel){
+        self.data = data
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -66,10 +75,6 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
         setGradientBackground()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        configure()
-    }
-
     private func makeConstraints() {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -105,8 +110,8 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
     
     private func configure() {
         view.backgroundColor = .white
-        textLabel.text = formatingText(text: data?.text)
-        titleLabel.text = data?.title
+        textLabel.text = formatingText(text: data.text)
+        titleLabel.text = data.title
         
         print("⭕️ configure in SpecificNews()")
         setupImage(picture)
@@ -117,8 +122,8 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
         aspectRatio = picture.image!.size.width / picture.image!.size.height
 
         
-        var date = data?.date
-        if date != "empty" {date?.removeLast(19)}
+        var date = data.date
+        if date != "empty" {date.removeLast(19)}
         dateLabel.text = date
     }
     private func addSubviews() {
@@ -140,7 +145,7 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
     
     func setupImage(_ picture: UIImageView) {
         // MARK: Checking out already-downloaded images in <imageDictionary>
-        let id = data?.id ?? 0
+        let id = data.id
         
         let imageExists = NewsContentView.imageDictionary[id] != nil
         if imageExists {
@@ -150,7 +155,7 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
             let defaultImage = UIImage(named: "rtu-mirea-image")
             DispatchQueue.global().async {
                 do {
-                    if let url = URL(string: self.data?.url ?? "") {
+                    if let url = URL(string: self.data.url) {
                         let data = try Data(contentsOf: url)
                         let img = UIImage(data: data)
                         picture.image = img ?? defaultImage!
@@ -158,7 +163,7 @@ final class SpecificNewsVC: UIViewController, UIScrollViewDelegate {
                     }
                 }
                 catch {
-                    print("Error: Specific image with id \(self.data?.id ?? 0) isn't setted")
+                    print("Error: Specific image with id \(self.data.id) isn't setted")
                 }
             }
         }

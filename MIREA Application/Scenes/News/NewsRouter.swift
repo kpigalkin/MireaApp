@@ -23,23 +23,13 @@ protocol NewsDataPassing
 
 final class NewsRouter: NSObject, NewsRoutingLogic, NewsDataPassing {
   weak var viewController: NewsViewController?
-  var specificNewsVC = SpecificNewsVC()
   var dataStore: NewsDataStore?
   
   // MARK: Routing
     func displaySpecificNews(viewModel: NewsModels.SpecificNews.ViewModel) {
         print("⭕️ displaySpecificNews in NewsRouter")
-        self.passData(viewModel: viewModel)
-        self.viewController?.navigationController?.pushViewController(self.specificNewsVC, animated: true)
+        let vc = SpecificNewsVC(data: viewModel)
+        self.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
-  // MARK: Navigation
-
-  
-  // MARK: Passing data
-    
-    func passData(viewModel: NewsModels.SpecificNews.ViewModel) {
-        print("⭕️ passData in NewsRouter")
-        specificNewsVC.data = viewModel
-    }
 }
