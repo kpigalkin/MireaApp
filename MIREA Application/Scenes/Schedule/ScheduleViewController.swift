@@ -13,25 +13,32 @@
 import UIKit
 
 protocol ScheduleDisplayLogic: AnyObject {
-  func displaySomething(viewModel: Schedule.Something.ViewModel)
+    func routeToPersonSettings(viewModel: ScheduleModels.Teachers.ViewModel)
+    func displayDayClasses(viewModel: ScheduleModels.Classes.ViewModel)
 }
 
-final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
-{
-  var interactor: ScheduleBusinessLogic?
-  var router: (NSObjectProtocol & ScheduleRoutingLogic)?
+protocol ScheduleVСDelegate: AnyObject {
+    func getClassesForSpecificDay(weekDay: Int, weekNumber: Int)
+}
+
+final class ScheduleViewController: UIViewController, ScheduleDisplayLogic, ScheduleVСDelegate {
+    
+    var interactor: ScheduleBusinessLogic?
+    var router: (NSObjectProtocol & ScheduleRoutingLogic)?
     var scheduleView = ScheduleView()
+    weak var scheduleViewDelegate: ScheduleViewDelegate?
+
 
   // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    print("⭕️ init in ScheduleViewController")
+
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
   }
@@ -39,23 +46,27 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
   // MARK: Setup
   
   private func setup() {
-    let viewController = self
-    let interactor = ScheduleInteractor()
-    let presenter = SchedulePresenter()
-    let router = ScheduleRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = self
-    router.viewController = self
-//    router.dataStore = interactor
+      let viewController = self
+      let interactor = ScheduleInteractor()
+      let presenter = SchedulePresenter()
+      let router = ScheduleRouter()
+      viewController.interactor = interactor
+      viewController.router = router
+      interactor.presenter = presenter
+      presenter.viewController = self
+      router.viewController = self
+      
+      scheduleView.scheduleVCDelegate = self
+      scheduleViewDelegate = scheduleView
   }
   
-  // MARK: Routing
+  // MARK: - Routing
   
+    func routeToPersonSettings(viewModel: ScheduleModels.Teachers.ViewModel) {
+        router?.presentPersonSettings(teachersList: viewModel)
+    }
   
-  
-  // MARK: View lifecycle
+  // MARK: - Lifecycle
     
     override func loadView() {
         view = scheduleView
@@ -63,33 +74,65 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        setupNavigationBar()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setGradientBackground()
+        setBackgroundGradient()
     }
     
-    func setGradientBackground() {
+        // MARK: - Requests & Displaying
+    
+    func getTeachersList() {
+        print("⭕️ getTeachers in ScheduleViewController")
+        let request = ScheduleModels.Teachers.Request()
+        interactor?.getTeachersList(with: request)
+    }
+    
+    func getClassesForSpecificDay(weekDay: Int, weekNumber: Int) {
+        print("⭕️ getClassesForSpecificDay in ScheduleViewController")
+        let request = ScheduleModels.Classes.Request(weekDay: weekDay, weekNumber: weekNumber)
+        interactor?.getDayClasses(with: request)
+    }
+    
+    func displayDayClasses(viewModel: ScheduleModels.Classes.ViewModel) {
+//        viewDelegate.showViewModel(viewmodel)
+        scheduleViewDelegate?.showClasses(viewModel)
+    }
+}
+
+// MARK: - Background gradient & NavBar
+
+private extension ScheduleViewController {
+    
+    func setupNavigationBar() {
+         title = "Расписание"
+        
+         let button = UIButton()
+         button.setImage(
+         UIImage(
+             systemName: "person",
+             withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)),
+         for: .normal)
+         button.imageView?.tintColor = Colors.defaultTheme.darkBlue
+         button.addAction(UIAction() { [weak self] _ in
+             self?.getTeachersList()
+         },
+             for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+      }
+        
+    func setBackgroundGradient() {
         let colorTop = Colors.defaultTheme.sand.cgColor
         let colorBottom = Colors.defaultTheme.darkBlue.cgColor
                     
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.2, 0.85]
+        gradientLayer.locations = [0.2, 1.15]
         gradientLayer.frame = self.view.bounds
                 
         self.view.layer.insertSublayer(gradientLayer, at:0)
-    }
-    
-  // MARK: Do something
-    func doSomething() {
-        let request = Schedule.Something.Request()
-//        interactor?.doSomething(request: request)
-    }
-  
-    func displaySomething(viewModel: Schedule.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
     }
 }

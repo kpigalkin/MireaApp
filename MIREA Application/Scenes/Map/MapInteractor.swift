@@ -17,8 +17,7 @@ protocol MapBusinessLogic
   func doSomething(request: Map.Something.Request)
 }
 
-protocol MapDataStore
-{
+protocol MapDataStore {
   //var name: String { get set }
 }
 

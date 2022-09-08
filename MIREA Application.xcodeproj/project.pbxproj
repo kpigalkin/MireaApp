@@ -35,8 +35,16 @@
 		DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsContentView.swift */; };
 		DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */; };
 		DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */; };
+		DB9D0BFE28B9F318001DDB5D /* CalendarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BFD28B9F318001DDB5D /* CalendarContentView.swift */; };
+		DB9D0C0128B9F341001DDB5D /* ScheduleCollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0028B9F341001DDB5D /* ScheduleCollectionViewLayoutFactory.swift */; };
+		DB9D0C0328B9F354001DDB5D /* ScheduleCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0228B9F354001DDB5D /* ScheduleCollectionItem.swift */; };
+		DB9D0C0528B9F371001DDB5D /* ScheduleConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0428B9F371001DDB5D /* ScheduleConfigurations.swift */; };
+		DB9D0C0728B9F539001DDB5D /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0628B9F539001DDB5D /* ListContentView.swift */; };
+		DB9D0C0B28BCB8C2001DDB5D /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0A28BCB8C2001DDB5D /* CalendarHelper.swift */; };
+		DB9D0C0E28BE3168001DDB5D /* WeekDaysContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0D28BE3168001DDB5D /* WeekDaysContentView.swift */; };
+		DB9D0C1028BFA830001DDB5D /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0F28BFA830001DDB5D /* PersonViewController.swift */; };
 		DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */; };
-		DBE10E8328B2249B00F48672 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Colors.swift */; };
+		DBE10E8328B2249B00F48672 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +78,16 @@
 		DB0B25C0289E8464005DFE26 /* NewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentView.swift; sourceTree = "<group>"; };
 		DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
 		DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		DB9D0BFD28B9F318001DDB5D /* CalendarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarContentView.swift; sourceTree = "<group>"; };
+		DB9D0C0028B9F341001DDB5D /* ScheduleCollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
+		DB9D0C0228B9F354001DDB5D /* ScheduleCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionItem.swift; sourceTree = "<group>"; };
+		DB9D0C0428B9F371001DDB5D /* ScheduleConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigurations.swift; sourceTree = "<group>"; };
+		DB9D0C0628B9F539001DDB5D /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
+		DB9D0C0A28BCB8C2001DDB5D /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		DB9D0C0D28BE3168001DDB5D /* WeekDaysContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysContentView.swift; sourceTree = "<group>"; };
+		DB9D0C0F28BFA830001DDB5D /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificNewsVC.swift; sourceTree = "<group>"; };
-		DBE10E8228B2249B00F48672 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		DBE10E8228B2249B00F48672 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +127,7 @@
 				DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */,
 				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
 				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
-				DBE10E8228B2249B00F48672 /* Colors.swift */,
+				DBE10E8228B2249B00F48672 /* Constants.swift */,
 				DB0B2590289B38F7005DFE26 /* Scenes */,
 			);
 			path = "MIREA Application";
@@ -143,12 +159,14 @@
 		DB0B2592289B390C005DFE26 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */,
+				DB9D0C0F28BFA830001DDB5D /* PersonViewController.swift */,
 				DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */,
 				DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */,
+				DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */,
 				DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */,
 				DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */,
 				DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */,
+				DB9D0BFF28B9F31E001DDB5D /* DataSourse */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -163,12 +181,12 @@
 				DB0B2599289B392D005DFE26 /* NewsInteractor.swift */,
 				DB0B2598289B392D005DFE26 /* NewsViewController.swift */,
 				DB0B25BB289E7870005DFE26 /* NewsView.swift */,
-				DB0B25BD289E825F005DFE26 /* UICollection */,
+				DB0B25BD289E825F005DFE26 /* DataSourse */,
 			);
 			path = News;
 			sourceTree = "<group>";
 		};
-		DB0B25BD289E825F005DFE26 /* UICollection */ = {
+		DB0B25BD289E825F005DFE26 /* DataSourse */ = {
 			isa = PBXGroup;
 			children = (
 				DB0B25C0289E8464005DFE26 /* NewsContentView.swift */,
@@ -176,7 +194,29 @@
 				DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */,
 				DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */,
 			);
-			path = UICollection;
+			path = DataSourse;
+			sourceTree = "<group>";
+		};
+		DB9D0BFF28B9F31E001DDB5D /* DataSourse */ = {
+			isa = PBXGroup;
+			children = (
+				DB9D0C0A28BCB8C2001DDB5D /* CalendarHelper.swift */,
+				DB9D0C0028B9F341001DDB5D /* ScheduleCollectionViewLayoutFactory.swift */,
+				DB9D0C0228B9F354001DDB5D /* ScheduleCollectionItem.swift */,
+				DB9D0C0428B9F371001DDB5D /* ScheduleConfigurations.swift */,
+				DB9D0C0C28BE3139001DDB5D /* ContentView */,
+			);
+			path = DataSourse;
+			sourceTree = "<group>";
+		};
+		DB9D0C0C28BE3139001DDB5D /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				DB9D0C0D28BE3168001DDB5D /* WeekDaysContentView.swift */,
+				DB9D0BFD28B9F318001DDB5D /* CalendarContentView.swift */,
+				DB9D0C0628B9F539001DDB5D /* ListContentView.swift */,
+			);
+			path = ContentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,27 +292,35 @@
 				DB0B25B4289B3959005DFE26 /* MapWorker.swift in Sources */,
 				DB0B25AB289B3940005DFE26 /* ScheduleInteractor.swift in Sources */,
 				DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */,
+				DB9D0C0728B9F539001DDB5D /* ListContentView.swift in Sources */,
 				DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */,
 				DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */,
 				DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */,
 				DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */,
 				DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */,
+				DB9D0BFE28B9F318001DDB5D /* CalendarContentView.swift in Sources */,
 				DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */,
 				DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */,
 				DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */,
 				DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */,
+				DB9D0C0E28BE3168001DDB5D /* WeekDaysContentView.swift in Sources */,
 				DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */,
 				DB0B25B8289B3959005DFE26 /* MapInteractor.swift in Sources */,
 				DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */,
 				DB0B25B7289B3959005DFE26 /* MapViewController.swift in Sources */,
 				DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */,
+				DB9D0C0B28BCB8C2001DDB5D /* CalendarHelper.swift in Sources */,
+				DB9D0C0128B9F341001DDB5D /* ScheduleCollectionViewLayoutFactory.swift in Sources */,
 				DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */,
 				DB0B25A8289B3940005DFE26 /* ScheduleRouter.swift in Sources */,
+				DB9D0C1028BFA830001DDB5D /* PersonViewController.swift in Sources */,
 				DB0B25B3289B3959005DFE26 /* MapPresenter.swift in Sources */,
 				DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */,
 				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
+				DB9D0C0328B9F354001DDB5D /* ScheduleCollectionItem.swift in Sources */,
 				DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */,
-				DBE10E8328B2249B00F48672 /* Colors.swift in Sources */,
+				DBE10E8328B2249B00F48672 /* Constants.swift in Sources */,
+				DB9D0C0528B9F371001DDB5D /* ScheduleConfigurations.swift in Sources */,
 				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
 				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,
 				DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */,

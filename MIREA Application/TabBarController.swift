@@ -14,13 +14,6 @@ final class TabBarController: UITabBarController {
         setupTabBar()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        // Changing tabBar size
-//        tabBar.frame.size.height = 95
-//        tabBar.frame.origin.y = view.frame.height - 95
-    }
-    
     // MARK: Animating tapped tabBarItem
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
@@ -39,7 +32,6 @@ final class TabBarController: UITabBarController {
         tabBar.isOpaque = false
         tabBar.tintColor = .white
         tabBar.unselectedItemTintColor = Colors.defaultTheme.dirtyWhite
-//        tabBar.layer.masksToBounds = false
         tabBar.layer.shadowRadius = 40
         tabBar.layer.shadowOpacity = 1.0
         tabBar.layer.shadowOffset = CGSize(width: 30, height: 20)
@@ -60,27 +52,21 @@ final class TabBarController: UITabBarController {
 
         let unselectedConfiguration = UIImage.SymbolConfiguration(
             pointSize: 15, weight: .semibold)
-        
-//        let selectedConfiguration = UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold)
-        
+                
         navCNews.tabBarItem = UITabBarItem(
             title: "Новости",
             image: UIImage(systemName: "newspaper", withConfiguration: unselectedConfiguration),
             tag: 0)
-//        navCNews.tabBarItem.selectedImage = UIImage(systemName: "newspaper", withConfiguration: selectedConfiguration)
-        
+//
         navCSchedule.tabBarItem = UITabBarItem(
             title: "Расписание",
             image: UIImage(systemName: "calendar", withConfiguration: unselectedConfiguration),
             tag: 1)
-//        navCSchedule.tabBarItem.selectedImage = UIImage(systemName: "calendar", withConfiguration: selectedConfiguration)
         
         navCMap.tabBarItem = UITabBarItem(
             title: "Карта",
             image: UIImage(systemName: "map", withConfiguration: unselectedConfiguration),
-            tag: 2)
-//        navCMap.tabBarItem.selectedImage = UIImage(systemName: "map", withConfiguration: selectedConfiguration)
-        
+            tag: 2)        
         
         setViewControllers(
             [navCNews, navCSchedule, navCMap],

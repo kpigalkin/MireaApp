@@ -23,19 +23,19 @@ final class NewsPresenter: NewsPresentationLogic {
 
   // MARK: Do something
   
-  func presentNews(response: NewsModels.News.Response) {
-      print("⭕️ presentNews in NewsPresenter")
-      let defaultImageUrl = URL(string: "https://www.mirea.ru/upload/medialibrary/d07/RTS_colour.jpg")
-      var news = [NewsCollectionItem]()
-      for item in response {
-          let url = URL(string: item.image) ?? defaultImageUrl
-          let element = NewsCollectionItem(content: .news(config: .init(
-            id: item.id,
-            name: item.name,
-            imageUrl: url!,
-            image: nil
-          )))
-          news.append(element)
+    func presentNews(response: NewsModels.News.Response) {
+        print("⭕️ presentNews in NewsPresenter")
+        let defaultImageUrl = URL(string: "https://www.mirea.ru/upload/medialibrary/d07/RTS_colour.jpg")
+        var news = [NewsCollectionItem]()
+        for item in response {
+            let url = URL(string: item.image) ?? defaultImageUrl
+            let element = NewsCollectionItem(content: .news(config: .init(
+                id: item.id,
+                name: item.name,
+                imageUrl: url!,
+                image: nil
+            )))
+            news.append(element)
       }
       
       let viewModel = NewsModels.News.ViewModel(news)
@@ -44,14 +44,14 @@ final class NewsPresenter: NewsPresentationLogic {
     func presentSpecificNews(response: NewsModels.SpecificNews.Response) {
         print("⭕️ presentSpecificNews in NewsPresenter")
 
-       let viewModel = NewsModels.SpecificNews.ViewModel.init(
+        let viewModel = NewsModels.SpecificNews.ViewModel.init(
             id: response.id,
             title: response.title,
             date: response.date,
             text: response.text,
             image: response.image,
             url: response.url
-       )
+        )
         viewController?.displaySpecificNews(viewModel: viewModel)        
     }
 }

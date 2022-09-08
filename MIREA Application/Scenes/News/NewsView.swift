@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Section: Int {
+enum NewsSection: Int {
     case news
 }
 
@@ -75,13 +75,13 @@ private extension NewsView {
     }
     
     func makeSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, NewsCollectionItem>()
+        var snapshot = NSDiffableDataSourceSnapshot<NewsSection, NewsCollectionItem>()
         snapshot.appendSections([.news])
         dataSourse.apply(snapshot)
    }
     
-    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, NewsCollectionItem> {
-        let dataSource = UICollectionViewDiffableDataSource<Section, NewsCollectionItem>(collectionView: collectionView) { [weak self] collectionView,
+    func makeDataSource() -> UICollectionViewDiffableDataSource<NewsSection, NewsCollectionItem> {
+        let dataSource = UICollectionViewDiffableDataSource<NewsSection, NewsCollectionItem>(collectionView: collectionView) { [weak self] collectionView,
             indexPath, item in
             guard let self = self,
                 let _ = self.dataSourse.sectionIdentifier(for: indexPath.section) else {
@@ -94,33 +94,6 @@ private extension NewsView {
         }
         return dataSource
     }
-    
-//    func uploadImage() {
-//        // MARK: Checking out already-downloaded images in <imageDictionary>
-//        let imageExists = imageDictionary[newConfiguration.id] != nil
-//        if imageExists {
-//            newConfiguration.image = imageDictionary[newConfiguration.id]
-//            print("🌄 image already exists")
-//        }
-//        else {
-//            let defaultImage = UIImage(named: "rtu-mirea-image")
-//            DispatchQueue.global().async {
-//                do {
-//                    let imgData = try Data(contentsOf: itemConfiguration.imageUrl)
-//                    let img = UIImage(data: imgData)
-//                    newConfiguration.image = img ?? defaultImage!
-//                    DispatchQueue.main.async {
-//                        imageDictionary[itemConfiguration.id] = newConfiguration.image
-//                        print("🌄 image downloaded and setted")
-//                    }
-//                }
-//                catch {
-//                    print("Error: image with title \(newConfiguration.name) isn't setted")
-//                }
-//            }
-//        }
-//
-//    }
 }
 
 extension NewsView: NewsViewDelegate {
@@ -128,7 +101,6 @@ extension NewsView: NewsViewDelegate {
         print("⭕️ showNews in NewsView)")
         var snapshot = dataSourse.snapshot()
         snapshot.appendItems(news.element, toSection: .news)
-        
         dataSourse.apply(snapshot)
     }
 }
