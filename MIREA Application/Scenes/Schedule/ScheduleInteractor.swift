@@ -19,22 +19,26 @@ protocol ScheduleBusinessLogic {
 
 protocol ScheduleDataStore {
     var schedule: (classes: ScheduleModels.Classes.ResponseItems, stringId: String) { get set }
-
+    var components: URLComponents { get set }
 }
 
 final class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore {
-    
     var presenter: SchedulePresentationLogic?
     var schedule = (classes: ScheduleModels.Classes.ResponseItems(), stringId: "")
+    var components: URLComponents = {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "tt-mosit.mirea.ru"
+        return components
+    }()
     
-    
-    let domain = "https://tt-mosit.mirea.ru"
-        
     func getTeachersList(with request: ScheduleModels.Teachers.Request) {
-        let teacherListURL = URL(string: "https://tt-mosit.mirea.ru" + "/teachers")!
-
         print("⭕️ getTeachersList in ScheduleInteractor")
-        let task = URLSession.shared.dataTask(with: teacherListURL) { data, response, error in
+        
+        components.path = "/teachers"
+        guard let url = components.url else { return }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data, let teachers = try? JSONDecoder().decode(ScheduleModels.Teachers.Response.self, from: data) {
                 DispatchQueue.main.async {
                     self.presenter?.presentTeachersList(with: teachers)
@@ -43,52 +47,32 @@ final class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore {
         }
         task.resume()
     }
-    // Не делать запрос, если уже есть дата, парсить с собственного проперти
 
     func getDayClasses(with request: ScheduleModels.Classes.Request) {
+        print("⭕️ getDayClasses in ScheduleInteractor")
         
-        let teacherId = getUserDefaultsId(key: UDKeys.id)
-        if schedule.stringId == teacherId {
+        guard let value = UserDefaults.standard.value(forKey: UDKeys.id) else { return }
+        guard let teacherId = value as? Int else { return }
+        let strTeacherId = String(teacherId)
+
+        guard schedule.stringId != strTeacherId else { /// if schedule already downloaded
             let response = ScheduleModels.Classes.Response(dayClasses: schedule.classes, dayInfo: request)
             presenter?.presentClasses(with: response)
             return
         }
+        components.path = "/teacher_classes/" + strTeacherId
+        guard let url = components.url else { return }
         
-        
-        let getTeacherClassesURL = URL(string: "https://tt-mosit.mirea.ru" + "/teacher_classes/" + teacherId)!
-        let task = URLSession.shared.dataTask(with: getTeacherClassesURL) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data, let classes = try? JSONDecoder().decode(ScheduleModels.Classes.ResponseItems.self, from: data) {
                 DispatchQueue.main.async {
-                    self.schedule.classes = classes
-                    self.schedule.stringId = teacherId
                     let response = ScheduleModels.Classes.Response(dayClasses: classes, dayInfo: request)
                     self.presenter?.presentClasses(with: response)
+                    self.schedule.classes = classes
+                    self.schedule.stringId = strTeacherId
                 }
             }
         }
         task.resume()
     }
-    
-}
-private extension ScheduleInteractor {
-    
-    func getUserDefaultsId(key: String) -> String {
-        if let value = UserDefaults.standard.value(forKey: key) {
-            return String(value as! Int)
-        } else {
-            return ""
-        }
-    }
-    
-}
-
-
-
-
-
-
-
-
-// Way to see data in console
-
-// print(String(decoding: data!, as: UTF8.self))
+} // print(String(decoding: data!, as: UTF8.self))

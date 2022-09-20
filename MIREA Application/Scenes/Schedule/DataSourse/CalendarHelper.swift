@@ -11,7 +11,6 @@ import UIKit
 class CalendarHelper {
     static let calendar = Calendar.current
 
-    
     static func plusMonth(date: Date) -> Date {
         return calendar.date(byAdding: .month, value: 1, to: date)!
     }
@@ -74,7 +73,6 @@ class CalendarHelper {
     }
     
     static func makeDateMarks(date: Date) -> (currentMonthStringNumber: String, daysInPreviousMonth: Int, daysInMonth: Int, startSpace: Int) {
-
         let currentMonth = CalendarHelper.monthStringNumber(date: date)
         let daysInPreviousMonth = CalendarHelper.daysInMonth(date: CalendarHelper.minusMonth(date: date))
         let daysInMonth = CalendarHelper.daysInMonth(date: date)
@@ -88,9 +86,8 @@ class CalendarHelper {
     static func getCurrentDate() -> Date {
         return Date()
     }
-    static func getWeekDay(month: String?, day: Int?) -> Int {
     
-        // Specify date components
+    static func getWeekDay(month: String?, day: Int?) -> Int {
         var dateComponents = DateComponents()
         dateComponents.year = calendar.dateComponents([.year], from: .now).year
         dateComponents.month = Int(month ?? "02")
@@ -101,10 +98,28 @@ class CalendarHelper {
         let calendar = Calendar(identifier: .gregorian)
         let newDate = calendar.date(from: dateComponents)
         var weekDay = calendar.dateComponents([.weekday], from: newDate ?? .now).weekday! - 1
-        if weekDay == 0 { weekDay = 7 } // idk why sunday is 0
+        if weekDay == 0 { weekDay = 7 }
         
         return weekDay
     }
     
-    
+    static func reformMonth(month: String?) -> String {
+        guard let _ = month else {
+            return ""
+        }
+        switch month {
+        case "01": return "Январь"
+        case "02": return "Февраль"
+        case "03": return "Март"
+        case "04": return "Апрель"
+        case "05": return "Май"
+        case "06": return "Июнь"
+        case "07": return "Июль"
+        case "08": return "Август"
+        case "09": return "Сентябрь"
+        case "10": return "Октябрь"
+        case "11": return "Ноябрь"
+        default: return "Декабрь"
+        }
+    }
 }

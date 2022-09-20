@@ -13,7 +13,6 @@
 import UIKit
 
 enum ScheduleModels {
-    
     enum Teachers {
         struct Request {
             //
@@ -54,11 +53,6 @@ enum ScheduleModels {
             let dayInfo: Request
         }
         
-//        struct ViewModel {
-//
-//        }
         typealias ViewModel = [Subject]
     }
-    
 }
-

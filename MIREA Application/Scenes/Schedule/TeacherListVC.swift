@@ -8,10 +8,7 @@
 import UIKit
 import Foundation
 
-
-
-final class PersonViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+final class TeacherListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var teachers: ScheduleModels.Teachers.ViewModel
     
     private let personTitle: UILabel = {
@@ -26,14 +23,14 @@ final class PersonViewController: UIViewController, UITableViewDelegate, UITable
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero)
-        view.register(PersonCell.self, forCellReuseIdentifier: "tableCell")
+        view.register(PersonCell.self, forCellReuseIdentifier: PersonCell.identifier)
         view.dataSource = self
         view.delegate = self
         view.backgroundColor = .clear
         return view
     }()
     
-        // MARK: Lifecycle
+    // MARK: Lifecycle
 
     init(teachers: ScheduleModels.Teachers.ViewModel) {
         self.teachers = teachers
@@ -50,15 +47,15 @@ final class PersonViewController: UIViewController, UITableViewDelegate, UITable
         scrollToSelectedTeacher(key: UDKeys.name)
     }
     
-        // MARK: - UITableView
+    // MARK: UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return teachers.count
+        teachers.count
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let teacher = teachers[indexPath.item]
-        let cell: PersonCell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! PersonCell
+        let cell: PersonCell = tableView.dequeueReusableCell(withIdentifier: PersonCell.identifier) as! PersonCell
         cell.id = teacher.id
         cell.name = teacher.name
         return cell
@@ -73,11 +70,11 @@ final class PersonViewController: UIViewController, UITableViewDelegate, UITable
     
 }
 
-        // MARK: - Setup
+    // MARK: Setup
 
-extension PersonViewController {
+private extension TeacherListVC {
     func setup() {
-        view.backgroundColor = Colors.defaultTheme.darkBlue.withAlphaComponent(0.95)
+        view.backgroundColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.95)
         addSubviews()
         makeConstraints()
     }
@@ -94,7 +91,7 @@ extension PersonViewController {
             personTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             personTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            tableView.topAnchor.constraint(equalTo: personTitle.bottomAnchor, constant: Constants.heightPadding),
+            tableView.topAnchor.constraint(equalTo: personTitle.bottomAnchor, constant: Constants.heightSpace),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -102,21 +99,17 @@ extension PersonViewController {
     }
     
     func scrollToSelectedTeacher(key: String) {
-        var adress: Int?
-        if let teacherName = UserDefaults.standard.value(forKey: key) {
-            adress = teachers.firstIndex { item in
-                item.name == teacherName as! String
-            }
-        }
-        tableView.scrollToRow(at: [0, adress ?? 0], at: .top, animated: true)
-        tableView.selectRow(at: [0, adress ?? 0], animated: true, scrollPosition: .top)
+        guard let teacherName = UserDefaults.standard.value(forKey: key) else { return }
+        guard let adress = teachers.firstIndex(where: { $0.name == teacherName as! String }) else { return }
+        tableView.scrollToRow(at: [0, adress], at: .top, animated: true)
+        tableView.selectRow(at: [0, adress], animated: true, scrollPosition: .top)
     }
 }
 
-// MARK: - Custom cell
+    // MARK: - Custom cell
 
 final class PersonCell: UITableViewCell {
-
+    static let identifier = "tableCell"
     var id: Int?
     var name: String?
 
@@ -131,10 +124,9 @@ final class PersonCell: UITableViewCell {
         backgroundConfig?.backgroundColor = .clear
 
         if state.isHighlighted || state.isSelected {
-            backgroundConfig?.backgroundColor = Colors.defaultTheme.red
+            backgroundConfig?.backgroundColor = Colors.defaultTheme.orange
             contentConfig.textProperties.color = .white
         }
-
         contentConfiguration = contentConfig
         backgroundConfiguration = backgroundConfig
     }

@@ -8,12 +8,11 @@
 import UIKit
 
 final class CalendarContentView: UIView, UIContentView {
-
     var configuration: UIContentConfiguration
     
     private let title: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
         return label
     }()
@@ -21,7 +20,7 @@ final class CalendarContentView: UIView, UIContentView {
     init(with contentConfiguration: CalendarConfiguration) {
         configuration = contentConfiguration
         super.init(frame: .zero)
-        addSubviews()
+        addSubview(title)
         configure()
         makeConstraints()
     }
@@ -31,16 +30,9 @@ final class CalendarContentView: UIView, UIContentView {
     }
 
     private func configure() {
-        guard let content = configuration as? CalendarConfiguration else {
-            return
-        }
+        guard let content = configuration as? CalendarConfiguration else { return }
         title.text = String(content.day)
         setupCellColor(monthStatus: content.isCurrent)
-//        print("🗒 Calendar cell configured")
-    }
-    
-    private func addSubviews() {
-        addSubview(title)
     }
 
     private func makeConstraints() {
@@ -54,9 +46,6 @@ final class CalendarContentView: UIView, UIContentView {
     }
     
     private func setupCellColor(monthStatus: Bool) {
-        if monthStatus { title.textColor = Colors.defaultTheme.dirtyWhite }
-        else { title.textColor = Colors.defaultTheme.black.withAlphaComponent(0.25) }
+        title.textColor = monthStatus ? Colors.defaultTheme.lightBlack.withAlphaComponent(0.9) : Colors.defaultTheme.black.withAlphaComponent(0.25)
     }
-    
 }
-

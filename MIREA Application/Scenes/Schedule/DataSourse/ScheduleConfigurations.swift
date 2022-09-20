@@ -8,7 +8,6 @@
 import UIKit
 
 struct CalendarConfiguration: UIContentConfiguration {
-    
     let id: Int
     let day: Int
     let month: String
@@ -25,7 +24,6 @@ struct CalendarConfiguration: UIContentConfiguration {
 }
 
 struct ListConfiguration: UIContentConfiguration {
-    
     let id: Int
     let name, room, type, group: String
     let number, wdNum: Int
@@ -40,7 +38,6 @@ struct ListConfiguration: UIContentConfiguration {
 }
 
 struct WeekDayConfiguration: UIContentConfiguration {
-
     let id: Int
     let day: String
 
@@ -52,5 +49,3 @@ struct WeekDayConfiguration: UIContentConfiguration {
         return self
     }
 }
-
-

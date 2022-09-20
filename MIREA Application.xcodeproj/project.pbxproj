@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */; };
-		DB0B257E289B37B1005DFE26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB0B257D289B37B1005DFE26 /* Assets.xcassets */; };
 		DB0B2581289B37B1005DFE26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */; };
 		DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2589289B37D0005DFE26 /* AppDelegate.swift */; };
 		DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B258A289B37D0005DFE26 /* NavigationViewController.swift */; };
@@ -23,16 +22,12 @@
 		DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */; };
 		DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */; };
 		DB0B25AB289B3940005DFE26 /* ScheduleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */; };
-		DB0B25B3289B3959005DFE26 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25AD289B3959005DFE26 /* MapPresenter.swift */; };
-		DB0B25B4289B3959005DFE26 /* MapWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25AE289B3959005DFE26 /* MapWorker.swift */; };
-		DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25AF289B3959005DFE26 /* MapRouter.swift */; };
-		DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B0289B3959005DFE26 /* MapModels.swift */; };
 		DB0B25B7289B3959005DFE26 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B1289B3959005DFE26 /* MapViewController.swift */; };
-		DB0B25B8289B3959005DFE26 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B2289B3959005DFE26 /* MapInteractor.swift */; };
 		DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */; };
 		DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BB289E7870005DFE26 /* NewsView.swift */; };
 		DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */; };
 		DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsContentView.swift */; };
+		DB5BFBE328D50F5B003FF6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5BFBE228D50F5B003FF6AD /* Assets.xcassets */; };
 		DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */; };
 		DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */; };
 		DB9D0BFE28B9F318001DDB5D /* CalendarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BFD28B9F318001DDB5D /* CalendarContentView.swift */; };
@@ -42,15 +37,15 @@
 		DB9D0C0728B9F539001DDB5D /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0628B9F539001DDB5D /* ListContentView.swift */; };
 		DB9D0C0B28BCB8C2001DDB5D /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0A28BCB8C2001DDB5D /* CalendarHelper.swift */; };
 		DB9D0C0E28BE3168001DDB5D /* WeekDaysContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0D28BE3168001DDB5D /* WeekDaysContentView.swift */; };
-		DB9D0C1028BFA830001DDB5D /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0F28BFA830001DDB5D /* PersonViewController.swift */; };
-		DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */; };
+		DB9D0C1028BFA830001DDB5D /* TeacherListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */; };
+		DBCCF09828D7B7C50043DEE8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCF09728D7B7C50043DEE8 /* Extensions.swift */; };
+		DBCE0B0928A6684300547A82 /* NewsElementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* NewsElementVC.swift */; };
 		DBE10E8328B2249B00F48672 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DB0B2571289B37B0005DFE26 /* MIREA Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIREA Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DB0B257D289B37B1005DFE26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB0B2580289B37B1005DFE26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB0B2582289B37B1005DFE26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB0B2589289B37D0005DFE26 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,16 +61,12 @@
 		DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModels.swift; sourceTree = "<group>"; };
 		DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInteractor.swift; sourceTree = "<group>"; };
-		DB0B25AD289B3959005DFE26 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
-		DB0B25AE289B3959005DFE26 /* MapWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorker.swift; sourceTree = "<group>"; };
-		DB0B25AF289B3959005DFE26 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
-		DB0B25B0289B3959005DFE26 /* MapModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModels.swift; sourceTree = "<group>"; };
 		DB0B25B1289B3959005DFE26 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		DB0B25B2289B3959005DFE26 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
 		DB0B25B9289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
 		DB0B25BB289E7870005DFE26 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionItem.swift; sourceTree = "<group>"; };
 		DB0B25C0289E8464005DFE26 /* NewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentView.swift; sourceTree = "<group>"; };
+		DB5BFBE228D50F5B003FF6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
 		DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		DB9D0BFD28B9F318001DDB5D /* CalendarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarContentView.swift; sourceTree = "<group>"; };
@@ -85,8 +76,9 @@
 		DB9D0C0628B9F539001DDB5D /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
 		DB9D0C0A28BCB8C2001DDB5D /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		DB9D0C0D28BE3168001DDB5D /* WeekDaysContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysContentView.swift; sourceTree = "<group>"; };
-		DB9D0C0F28BFA830001DDB5D /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
-		DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificNewsVC.swift; sourceTree = "<group>"; };
+		DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListVC.swift; sourceTree = "<group>"; };
+		DBCCF09728D7B7C50043DEE8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DBCE0B0828A6684300547A82 /* NewsElementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsElementVC.swift; sourceTree = "<group>"; };
 		DBE10E8228B2249B00F48672 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,8 +96,8 @@
 		DB0B2568289B37B0005DFE26 = {
 			isa = PBXGroup;
 			children = (
+				DB5BFBE228D50F5B003FF6AD /* Assets.xcassets */,
 				DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */,
-				DB0B257D289B37B1005DFE26 /* Assets.xcassets */,
 				DB0B2573289B37B0005DFE26 /* MIREA Application */,
 				DB0B2572289B37B0005DFE26 /* Products */,
 			);
@@ -127,6 +119,7 @@
 				DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */,
 				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
 				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
+				DBCCF09728D7B7C50043DEE8 /* Extensions.swift */,
 				DBE10E8228B2249B00F48672 /* Constants.swift */,
 				DB0B2590289B38F7005DFE26 /* Scenes */,
 			);
@@ -146,12 +139,7 @@
 		DB0B2591289B38FF005DFE26 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				DB0B25AD289B3959005DFE26 /* MapPresenter.swift */,
-				DB0B25AE289B3959005DFE26 /* MapWorker.swift */,
-				DB0B25AF289B3959005DFE26 /* MapRouter.swift */,
-				DB0B25B0289B3959005DFE26 /* MapModels.swift */,
 				DB0B25B1289B3959005DFE26 /* MapViewController.swift */,
-				DB0B25B2289B3959005DFE26 /* MapInteractor.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -159,7 +147,7 @@
 		DB0B2592289B390C005DFE26 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				DB9D0C0F28BFA830001DDB5D /* PersonViewController.swift */,
+				DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */,
 				DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */,
 				DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */,
 				DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */,
@@ -174,7 +162,7 @@
 		DB0B2593289B3919005DFE26 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				DBCE0B0828A6684300547A82 /* SpecificNewsVC.swift */,
+				DBCE0B0828A6684300547A82 /* NewsElementVC.swift */,
 				DB0B2596289B392D005DFE26 /* NewsRouter.swift */,
 				DB0B2597289B392D005DFE26 /* NewsModels.swift */,
 				DB0B2594289B392D005DFE26 /* NewsPresenter.swift */,
@@ -277,8 +265,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5BFBE328D50F5B003FF6AD /* Assets.xcassets in Resources */,
 				DB0B2581289B37B1005DFE26 /* LaunchScreen.storyboard in Resources */,
-				DB0B257E289B37B1005DFE26 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,23 +277,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB0B25B4289B3959005DFE26 /* MapWorker.swift in Sources */,
 				DB0B25AB289B3940005DFE26 /* ScheduleInteractor.swift in Sources */,
 				DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */,
 				DB9D0C0728B9F539001DDB5D /* ListContentView.swift in Sources */,
-				DB0B25B6289B3959005DFE26 /* MapModels.swift in Sources */,
 				DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */,
 				DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */,
-				DBCE0B0928A6684300547A82 /* SpecificNewsVC.swift in Sources */,
+				DBCE0B0928A6684300547A82 /* NewsElementVC.swift in Sources */,
 				DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */,
 				DB9D0BFE28B9F318001DDB5D /* CalendarContentView.swift in Sources */,
 				DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */,
 				DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */,
 				DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */,
 				DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */,
+				DBCCF09828D7B7C50043DEE8 /* Extensions.swift in Sources */,
 				DB9D0C0E28BE3168001DDB5D /* WeekDaysContentView.swift in Sources */,
 				DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */,
-				DB0B25B8289B3959005DFE26 /* MapInteractor.swift in Sources */,
 				DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */,
 				DB0B25B7289B3959005DFE26 /* MapViewController.swift in Sources */,
 				DB0B25A9289B3940005DFE26 /* ScheduleModels.swift in Sources */,
@@ -313,8 +299,7 @@
 				DB9D0C0128B9F341001DDB5D /* ScheduleCollectionViewLayoutFactory.swift in Sources */,
 				DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */,
 				DB0B25A8289B3940005DFE26 /* ScheduleRouter.swift in Sources */,
-				DB9D0C1028BFA830001DDB5D /* PersonViewController.swift in Sources */,
-				DB0B25B3289B3959005DFE26 /* MapPresenter.swift in Sources */,
+				DB9D0C1028BFA830001DDB5D /* TeacherListVC.swift in Sources */,
 				DB0B259A289B392D005DFE26 /* NewsPresenter.swift in Sources */,
 				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
 				DB9D0C0328B9F354001DDB5D /* ScheduleCollectionItem.swift in Sources */,
@@ -323,7 +308,6 @@
 				DB9D0C0528B9F371001DDB5D /* ScheduleConfigurations.swift in Sources */,
 				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
 				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,
-				DB0B25B5289B3959005DFE26 /* MapRouter.swift in Sources */,
 				DB0B259D289B392D005DFE26 /* NewsModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,19 +7,19 @@
 
 import UIKit
 
-enum NewsSection: Int {
-    case news
-}
+    // MARK:  Sections & Custom cell
+
+
 
 class NewsCell: UICollectionViewCell {
+    static let identifier = "newsCell"
     var id : Int?
 }
 
+    // MARK: - NewsView
 
-final class NewsView: UIView, UICollectionViewDelegate {
-    
+final class NewsView: UIView, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
     weak var newsViewControllerDelegate: NewsViewControllerDelegate?
-    static var imageDictionary = [Int: UIImage]()
     
     private let newsCellRegistration = UICollectionView.CellRegistration<NewsCell, NewsConfiguration> { cell, indexPath, itemConfiguration in
         cell.contentConfiguration = nil
@@ -27,44 +27,49 @@ final class NewsView: UIView, UICollectionViewDelegate {
         cell.contentConfiguration = itemConfiguration
     }
     
-    private lazy var dataSourse = makeDataSource()
-    
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(
             frame: .zero,
             collectionViewLayout: NewsCollectionViewLayoutFactory.newsFeedLayout())
-        view.register(NewsCell.self, forCellWithReuseIdentifier: "cell")
+        view.register(NewsCell.self, forCellWithReuseIdentifier: NewsCell.identifier)
         view.delegate = self
+        view.prefetchDataSource = self
         view.showsVerticalScrollIndicator = false
+        view.backgroundColor = Colors.defaultTheme.lightBlue
         return view
     }()
     
+    private lazy var dataSourse = makeDataSource()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
-        addSubview(collectionView)
+        print("⭕️ init in NewsView")
         makeConstraints()
         makeSnapshot()
-        self.collectionView.delegate = self
-        self.collectionView.backgroundColor = .clear
-        print("⭕️ init in NewsView")
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("🙋🏻‍♂️ user selected item at \(indexPath)")
-        let cell = collectionView.cellForItem(at: indexPath) as? NewsCell
-        let id = cell?.id
-        newsViewControllerDelegate?.userSelectedCell(indexPath: indexPath, id: id ?? 1)
-    }
-}
-
-private extension NewsView {
+        // MARK: CollectionView methods
     
-    func makeConstraints() {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? NewsCell
+        guard let id = cell?.id else { return }
+        newsViewControllerDelegate?.userSelectedCell(id: id)
+    }
+        
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let itemsCount = dataSourse.snapshot().numberOfItems
+        guard indexPaths.last?.item == itemsCount - 1 else { return } /// Detect last item
+        newsViewControllerDelegate?.showLastNews()
+    }
+    
+        // MARK: Setup
+
+    private func makeConstraints() {
+        addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -74,13 +79,13 @@ private extension NewsView {
         ])
     }
     
-    func makeSnapshot() {
+    private func makeSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<NewsSection, NewsCollectionItem>()
         snapshot.appendSections([.news])
         dataSourse.apply(snapshot)
-   }
+    }
     
-    func makeDataSource() -> UICollectionViewDiffableDataSource<NewsSection, NewsCollectionItem> {
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<NewsSection, NewsCollectionItem> {
         let dataSource = UICollectionViewDiffableDataSource<NewsSection, NewsCollectionItem>(collectionView: collectionView) { [weak self] collectionView,
             indexPath, item in
             guard let self = self,
@@ -96,16 +101,16 @@ private extension NewsView {
     }
 }
 
+    // MARK: NewsViewDelegate
+
 extension NewsView: NewsViewDelegate {
     func showNews(_ news: NewsModels.News.ViewModel) {
-        print("⭕️ showNews in NewsView)")
+        print("⭕️ showNews in NewsView")
         var snapshot = dataSourse.snapshot()
         snapshot.appendItems(news.element, toSection: .news)
         dataSourse.apply(snapshot)
     }
 }
-
 protocol NewsViewDelegate: AnyObject {
     func showNews(_ news: NewsModels.News.ViewModel)
 }
-

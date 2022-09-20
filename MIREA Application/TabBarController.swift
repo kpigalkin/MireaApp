@@ -6,70 +6,76 @@
 //
 
 import UIKit
+import AudioToolbox
 
 final class TabBarController: UITabBarController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupColor()
         setupTabBar()
-    }
-    
-    // MARK: Animating tapped tabBarItem
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        guard let barItemView = item.value(forKey: "view") as? UIView else { return }
-            
-        let timeInterval: TimeInterval = 0.3
-        let propertyAnimator = UIViewPropertyAnimator(duration: timeInterval, dampingRatio: 0.5) {
-            barItemView.transform = CGAffineTransform.identity.scaledBy(x: 0.9, y: 0.9)
-        }
-        propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
-        propertyAnimator.startAnimation()
     }
    
     func setupTabBar() {
         print("⭕️ setupTabBar in TabBarController")
-        
-        tabBar.isOpaque = false
-        tabBar.tintColor = .white
-        tabBar.unselectedItemTintColor = Colors.defaultTheme.dirtyWhite
-        tabBar.layer.shadowRadius = 40
-        tabBar.layer.shadowOpacity = 1.0
-        tabBar.layer.shadowOffset = CGSize(width: 30, height: 20)
-        tabBar.layer.shadowColor = UIColor.clear.cgColor
-        
-        // MARK: Setup  transparent TabBar
-        if #available(iOS 15.0, *) {
-            let tabBarAppearance = UITabBarAppearance()
-            tabBarAppearance.backgroundColor = Colors.defaultTheme.darkBlue
-            tabBarAppearance.stackedItemPositioning = .centered
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-            UITabBar.appearance().standardAppearance = tabBarAppearance
-        }
-
         let navCNews = NavigationController(rootViewController: NewsViewController())
         let navCSchedule = NavigationController(rootViewController: ScheduleViewController())
         let navCMap = NavigationController(rootViewController: MapViewController())
 
-        let unselectedConfiguration = UIImage.SymbolConfiguration(
-            pointSize: 15, weight: .semibold)
-                
         navCNews.tabBarItem = UITabBarItem(
             title: "Новости",
-            image: UIImage(systemName: "newspaper", withConfiguration: unselectedConfiguration),
+            image: UIImage(systemName: "lineweight"),
             tag: 0)
-//
+    
         navCSchedule.tabBarItem = UITabBarItem(
-            title: "Расписание",
-            image: UIImage(systemName: "calendar", withConfiguration: unselectedConfiguration),
+            title: "Раписание",
+            image: UIImage(systemName: "graduationcap.fill"),
             tag: 1)
         
         navCMap.tabBarItem = UITabBarItem(
-            title: "Карта",
-            image: UIImage(systemName: "map", withConfiguration: unselectedConfiguration),
-            tag: 2)        
+            title: "Схема",
+            image: UIImage(systemName: "map.fill"),
+            tag: 2)
         
         setViewControllers(
             [navCNews, navCSchedule, navCMap],
             animated: false)
+    }
+}
+
+extension TabBarController {
+        // Animate TabBarItems
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred(intensity: 0.65) /// Vibrating
+        guard let barItemView = item.value(forKey: "view") as? UIView else { return }
+        let timeInterval: TimeInterval = 1.0
+        let propertyAnimator = UIViewPropertyAnimator(duration: timeInterval, dampingRatio: 0.5) {
+            barItemView.transform = CGAffineTransform.identity.scaledBy(x: 0.6, y: 0.6)
+        }
+        propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
+        propertyAnimator.startAnimation()
+    }
+    
+    private func setupColor() {
+        let blur = Colors.makeBlurEffect()
+        blur.frame = tabBar.bounds
+        tabBar.addSubview(blur)
+        
+        let appearance = UITabBarAppearance()
+        appearance.stackedItemPositioning = .centered
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.3)
+        
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+        UITabBar.appearance().standardAppearance = appearance
+        setTabBarItemColors(appearance.stackedLayoutAppearance)
+        setTabBarItemColors(appearance.inlineLayoutAppearance)
+        setTabBarItemColors(appearance.compactInlineLayoutAppearance)
+    }
+    
+    private func setTabBarItemColors(_ itemAppearance: UITabBarItemAppearance) {
+        itemAppearance.normal.iconColor = UIColor.lightGray
+        itemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        itemAppearance.selected.iconColor = .white
+        itemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }

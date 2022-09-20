@@ -5,19 +5,17 @@
 //  Created by Кирилл Пигалкин on 30.08.2022.
 //
 
-
 import UIKit
 
 final class WeekDaysContentView: UIView, UIContentView {
-
     var configuration: UIContentConfiguration
     
     private let title: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 13, weight: .semibold)
-        label.textColor = Colors.defaultTheme.darkBlue
+        label.font = .systemFont(ofSize: 15, weight: .heavy)
+        label.font = .monospacedDigitSystemFont(ofSize: 13, weight: .semibold)
+        label.textColor = Colors.defaultTheme.lightBlack
         label.textAlignment = .center
-//        label.layer.borderWidth = 1
         return label
     }()
     
@@ -34,9 +32,7 @@ final class WeekDaysContentView: UIView, UIContentView {
     }
 
     private func configure() {
-        guard let content = configuration as? WeekDayConfiguration else {
-            return
-        }
+        guard let content = configuration as? WeekDayConfiguration else { return }
         title.text = content.day
     }
 
@@ -50,5 +46,3 @@ final class WeekDaysContentView: UIView, UIContentView {
         ])
     }
 }
-
-

@@ -13,11 +13,10 @@
 import UIKit
 
 protocol NewsRoutingLogic {
-    func displaySpecificNews(viewModel: NewsModels.SpecificNews.ViewModel)
+    func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel)
 }
 
-protocol NewsDataPassing
-{
+protocol NewsDataPassing {
   var dataStore: NewsDataStore? { get }
 }
 
@@ -25,11 +24,11 @@ final class NewsRouter: NSObject, NewsRoutingLogic, NewsDataPassing {
   weak var viewController: NewsViewController?
   var dataStore: NewsDataStore?
   
-  // MARK: Routing
-    func displaySpecificNews(viewModel: NewsModels.SpecificNews.ViewModel) {
+    func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel) {
         print("⭕️ displaySpecificNews in NewsRouter")
-        let vc = SpecificNewsVC(data: viewModel)
-        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+        let vc = NewsElementVC(data: viewModel)
+        viewController?.hideTabBar()
+        UIView.transition(from: self.viewController!.view, to: vc.view, duration: 0.2, options: .transitionCrossDissolve)
+        self.viewController?.navigationController?.pushViewController(vc, animated: false)
     }
-
 }

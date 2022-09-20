@@ -17,10 +17,10 @@ protocol ScheduleRoutingLogic {
 }
 
 final class ScheduleRouter: NSObject, ScheduleRoutingLogic {
-  weak var viewController: ScheduleViewController?
+    weak var viewController: ScheduleViewController?
   
     func presentPersonSettings(teachersList: ScheduleModels.Teachers.ViewModel) {
-        let vc = PersonViewController(teachers: teachersList)
+        let vc = TeacherListVC(teachers: teachersList)
         viewController?.navigationController?.present(vc, animated: true)
     }
 }

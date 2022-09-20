@@ -16,7 +16,6 @@ final class ListContentView: UIView, UIContentView {
         label.font = .systemFont(ofSize: 14, weight: .heavy)
         label.textColor = Colors.defaultTheme.dirtyWhite
         label.textAlignment = .left
-//        label.layer.backgroundColor =
         label.numberOfLines = 0
         return label
     }()
@@ -35,7 +34,6 @@ final class ListContentView: UIView, UIContentView {
         label.font = .systemFont(ofSize: 10, weight: .heavy)
         label.textColor = Colors.defaultTheme.dirtyWhite.withAlphaComponent(0.85)
         label.textAlignment = .center
-        label.numberOfLines = 0
         return label
     }()
     
@@ -44,31 +42,30 @@ final class ListContentView: UIView, UIContentView {
         label.font = .systemFont(ofSize: 10, weight: .heavy)
         label.textColor = Colors.defaultTheme.dirtyWhite.withAlphaComponent(0.85)
         label.textAlignment = .center
-        label.backgroundColor = Colors.defaultTheme.darkBlue.withAlphaComponent(0.8)
-
-        label.numberOfLines = 0
+        label.layer.cornerRadius = 5
+        label.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        label.layer.masksToBounds = true
         return label
     }()
     
     private let timeTitle: UILabel = {
         let label = UILabel()
-//        label.font = .systemFont(ofSize: 13, weight: .heavy)
         label.textColor = Colors.defaultTheme.dirtyWhite
-        label.backgroundColor = Colors.defaultTheme.darkBlue.withAlphaComponent(0.8)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .monospacedSystemFont(ofSize: 13, weight: .bold)
+        label.font = .monospacedSystemFont(ofSize: 13, weight: .semibold)
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
         return label
     }()
 
     init(with contentConfiguration: ListConfiguration) {
         configuration = contentConfiguration
         super.init(frame: .zero)
-        addSubviews()
+        setupView()
         configure()
+        addSubviews()
         makeConstraints()
-        setupLayers()
-        backgroundColor = Colors.defaultTheme.darkBlue.withAlphaComponent(0.6)
     }
 
     required init?(coder: NSCoder) {
@@ -76,17 +73,13 @@ final class ListContentView: UIView, UIContentView {
     }
 
     private func configure() {
-        guard let content = configuration as? ListConfiguration else {
-            return
-        }
+        guard let content = configuration as? ListConfiguration else { return }
         classNameTitle.text = content.name
         classTypeTitle.text = content.type.uppercased()
+        classTypeTitle.backgroundColor = setColorByTypeOfClass(type: content.type)
         groupTitle.text = content.group
         classroomTitle.text = content.room
         timeTitle.text = setClassTime(for: content.number)
-        
-        classTypeTitle.backgroundColor = setColorByTypeOfClass(type: content.type)
-//        print("✄ cellConfigured")
     }
     
     private func addSubviews() {
@@ -107,20 +100,18 @@ final class ListContentView: UIView, UIContentView {
             timeTitle.leadingAnchor.constraint(equalTo: leadingAnchor),
             timeTitle.topAnchor.constraint(equalTo: topAnchor),
             timeTitle.bottomAnchor.constraint(equalTo: bottomAnchor),
-            timeTitle.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2),
+            timeTitle.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15),
             
             classroomTitle.trailingAnchor.constraint(equalTo: trailingAnchor),
-            classroomTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.padding),
+            classroomTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.space),
             classroomTitle.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15),
             classroomTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
             
             classTypeTitle.trailingAnchor.constraint(equalTo: classroomTitle.trailingAnchor),
-            classTypeTitle.topAnchor.constraint(equalTo: topAnchor, constant: Constants.heightPadding),
-//            classTypeTitle.bottomAnchor.constraint(equalTo: classroomTitle.topAnchor),
+            classTypeTitle.topAnchor.constraint(equalTo: topAnchor, constant: Constants.heightSpace),
             classTypeTitle.widthAnchor.constraint(equalTo: classroomTitle.widthAnchor),
-            classTypeTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
+            classTypeTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.27),
 
-            
             classNameTitle.topAnchor.constraint(equalTo: topAnchor, constant: 23),
             classNameTitle.leadingAnchor.constraint(equalTo: timeTitle.trailingAnchor, constant: 7),
             classNameTitle.trailingAnchor.constraint(equalTo: classTypeTitle.leadingAnchor, constant: -7),
@@ -128,28 +119,17 @@ final class ListContentView: UIView, UIContentView {
             groupTitle.leadingAnchor.constraint(equalTo: classNameTitle.leadingAnchor),
             groupTitle.trailingAnchor.constraint(equalTo: classNameTitle.trailingAnchor),
             groupTitle.topAnchor.constraint(equalTo: classNameTitle.bottomAnchor, constant: 30),
-            groupTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.padding)
+            groupTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.space),
         ])
     }
-    /*
-     classNameTitle.topAnchor.constraint(equalTo: topAnchor),
-     classNameTitle.leadingAnchor.constraint(equalTo: timeTitle.trailingAnchor, constant: 7),
-     classNameTitle.trailingAnchor.constraint(equalTo: classTypeTitle.leadingAnchor, constant: -7),
-     classNameTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.55),//
-     
-     groupTitle.leadingAnchor.constraint(equalTo: classNameTitle.leadingAnchor),
-     groupTitle.trailingAnchor.constraint(equalTo: classNameTitle.trailingAnchor),
-     groupTitle.topAnchor.constraint(equalTo: classNameTitle.bottomAnchor, constant: Constants.padding),
-     groupTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.padding)
-     */
     
-    private func setupLayers() {
-        layer.cornerRadius = 17
-        layer.masksToBounds = true
-        layer.shadowRadius = 8
-        layer.shadowOpacity = 1.0
-        layer.shadowOffset = CGSize(width: 0, height: 10)
-        layer.shadowColor = UIColor.darkGray.cgColor
+    private func setupView() {
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+
+        let blur = Colors.makeBlurEffect()
+        blur.frame = self.bounds
+        addSubview(blur)
     }
 }
 
@@ -171,21 +151,20 @@ private extension ListContentView {
         case 7:
             return "19:40" + "\n" + "21:10"
         default:
-            return "error time"
+            return ""
         }
     }
+    
     func setColorByTypeOfClass(type: String) -> UIColor {
         switch type.uppercased() {
         case "ЛК":
-            return Colors.secondTheme.skyBlue
+            return .lightGray
         case "ПР":
-            return Colors.defaultTheme.red
+            return Colors.defaultTheme.red.withAlphaComponent(0.93)
         case "ЛАБ":
-            return Colors.defaultTheme.darkBlue
+            return Colors.defaultTheme.lightBlack
         default:
-            return Colors.secondTheme.black
+            return .black
         }
     }
-
-
 }

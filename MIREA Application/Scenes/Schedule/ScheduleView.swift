@@ -18,11 +18,13 @@ class CalendarCell: UICollectionViewCell {
         didSet {
             if self.isSelected {
                 UIView.animate(withDuration: 0.08) { // for animation effect
-                    self.backgroundColor = Colors.defaultTheme.darkBlue
+                    self.backgroundColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.4)
+                    self.layer.cornerRadius = 0.5 * self.bounds.size.width
+
                 }
             }
             else {
-                UIView.animate(withDuration: 0.2) { // for animation effect
+                UIView.animate(withDuration: 0.1) { // for animation effect
                     self.backgroundColor = .clear
                 }
             }
@@ -30,11 +32,10 @@ class CalendarCell: UICollectionViewCell {
     }
 }
 
+    // MARK: - Schedule View
+
 final class ScheduleView: UIView, UICollectionViewDelegate {
-    
     weak var scheduleVCDelegate: ScheduleVСDelegate?
-    
-        // MARK: Registration
     
     private let weekDayCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, WeekDayConfiguration> { cell, indexPath, itemConfiguration in
         cell.contentConfiguration = nil
@@ -55,6 +56,8 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
         cell.contentConfiguration = itemConfiguration
     }
     
+    // MARK: View
+    
     override init(frame: CGRect) {
         print("⭕️ init in ScheduleView")
         super.init(frame: .zero)
@@ -66,8 +69,6 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
         appendWeekDaysItems()
     }
     
-        // MARK: - UICollectionView
-    
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(
             frame: .zero,
@@ -78,6 +79,7 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
         view.backgroundColor = .clear
         return view
     }()
+    
     private lazy var dataSourse = makeDataSourse()
     
     required init?(coder: NSCoder) {
@@ -97,8 +99,7 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
     private func makeDataSourse() -> UICollectionViewDiffableDataSource<ScheduleSection, ScheduleCollectionItem> {
         let dataSourse = UICollectionViewDiffableDataSource<ScheduleSection, ScheduleCollectionItem>(collectionView: collectionView) { [weak self] collectionView,
             indexPath, item in
-            guard let self = self,
-                  let _ = self.dataSourse.sectionIdentifier(for: indexPath.section) else {
+            guard let self = self, let _ = self.dataSourse.sectionIdentifier(for: indexPath.section) else {
                 return .init(frame: .zero)
             }
             switch item.content {
@@ -116,41 +117,40 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
     private func makeConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -18),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
         ])
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if indexPath.section != 1 {return} // Clickable calendar only
-        guard let _ = UserDefaults.standard.value(forKey: UDKeys.id) else {
-            print("Choose teacher")
-            return
-        }
+        guard indexPath.section == 1 else { return } /// Clickable calendar only
+        guard let _ = UserDefaults.standard.value(forKey: UDKeys.id) else { return }
         
         let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell
-//        print("🙋🏻‍♂️🗒 cell: indexPath \(indexPath), id: \(cell?.id), month: \(cell?.month), day: \(cell?.day), weekNumber: \(cell?.weekNumber)")
-        
         let weekDay = CalendarHelper.getWeekDay(month: cell?.month, day: cell?.day)
-        guard weekDay != 7  else {
-            print("Воскресенье")
-            return
-        }
-                
-        scheduleVCDelegate?.getClassesForSpecificDay(weekDay: weekDay, weekNumber: cell?.weekNumber ?? 1)
+        
+        guard let weekNumber = cell?.weekNumber else { return }
+        guard weekDay != 7 else { return }
+        scheduleVCDelegate?.getClassesForSpecificDay(weekDay: weekDay, weekNumber: weekNumber)
     }
     
-    // MARK: - Filling data
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard indexPath.section == 1 else { return }
+        guard let cellIndexAtPoint = findCellIndexAtPoint() else { return } /// If cell isn't exist at point when swipe
+        
+        let cell = collectionView.cellForItem(at: cellIndexAtPoint) as? CalendarCell
+        let month = CalendarHelper.reformMonth(month: cell?.month)
+
+        scheduleVCDelegate?.setMonthLabel(month: month)
+    }
+    
+    // MARK: Filling data
     
     private func appendCalendarItems() {
-        // Сreate an array of calendar days that contains [42 * number of months] days.
-        //                                                      42 = 6 rows by 7 columns.
-        // So, sometimes some days are duplicated at the beginning and end of the months.
         
-                // Array for number of days & id-counter & weekCounter & adjustment for weekNumber
+    /// Array for number of days & id-counter & weekCounter & adjustment for weekNumber
         var calendar = [ScheduleCollectionItem]()
         var counter = (id: 0, cellCount: 1, nextMonthDays: 1)
         var week = (number: 1, adjustment: 0)
@@ -165,18 +165,14 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
             while counter.cellCount <= 42 {
                 week.number = counter.id / 7 + 1 - week.adjustment
 
-                if counter.cellCount < dateMarks.startSpace {
-                    
-                // Days of previous month
+                if counter.cellCount < dateMarks.startSpace {   /// Days of previous month
                     calendar.append(ScheduleCollectionItem(content: .calendar(configuration: .init(
                         id: counter.id,
                         day: dateMarks.daysInPreviousMonth - dateMarks.startSpace + 1 + counter.cellCount,
                         month: CalendarHelper.monthStringNumber(date: CalendarHelper.minusMonth(date: date)),
                         isCurrent: false,
                         weekNumber: week.number))))
-                } else if counter.cellCount - dateMarks.startSpace >= dateMarks.daysInMonth {
-                    
-                // Days in next month, started from 1
+                } else if counter.cellCount - dateMarks.startSpace >= dateMarks.daysInMonth {   /// Days in next month, started from 1
                     calendar.append(ScheduleCollectionItem(content: .calendar(configuration: .init(
                         id: counter.id,
                         day: counter.nextMonthDays,
@@ -185,9 +181,7 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
                         weekNumber: week.number))))
                     counter.nextMonthDays += 1
                 } else {
-                    
-                // Days in current(selected) month
-                    calendar.append(ScheduleCollectionItem(content: .calendar(configuration: .init(
+                    calendar.append(ScheduleCollectionItem(content: .calendar(configuration: .init( /// Days in current(selected) month
                         id: counter.id,
                         day: counter.cellCount - dateMarks.startSpace + 1,
                         month: dateMarks.currentMonthStringNumber,
@@ -206,19 +200,25 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
         snapshot.appendItems(calendar, toSection: .calendar)
         dataSourse.apply(snapshot)
     }
+    
     private func appendWeekDaysItems() {
-                // Fill weekDays section
         let days = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
         var weekDays = [ScheduleCollectionItem]()
-        days.forEach { day in
-            let index = days.firstIndex(of: day)
-            let item = ScheduleCollectionItem(content: .weekDay(configuration: .init(id: index ?? 0, day: day)))
+        days.enumerated().forEach { id, day in
+            let item = ScheduleCollectionItem(content: .weekDay(configuration: .init(id: id, day: day)))
             weekDays.append(item)
         }
-        
         var snapshot = dataSourse.snapshot()
         snapshot.appendItems(weekDays, toSection: .weekDays)
         dataSourse.apply(snapshot)
+    }
+}
+
+private extension ScheduleView {
+    func findCellIndexAtPoint() -> IndexPath? {
+        let point = CGPoint(x: self.bounds.midX, y: self.bounds.midY * 0.3)
+        let index = collectionView.indexPathForItem(at: point)
+        return index
     }
 }
 
@@ -226,26 +226,23 @@ extension ScheduleView: ScheduleViewDelegate {
     func showClasses(_ viewModel: ScheduleModels.Classes.ViewModel) {
         print("⭕️ showClasses in ScheduleView")
         var classesList = [ScheduleCollectionItem]()
-        var idCounter = 0
-        viewModel.forEach { item in
+        viewModel.enumerated().forEach { id, item in
             let classElement = ScheduleCollectionItem(content: .list(configuration: .init(
-                id: idCounter, name: item.name, room: item.room,
+                id: id, name: item.name, room: item.room,
                 type: item.type, group: item.group, number: item.number, wdNum: item.wdNum)))
             classesList.append(classElement)
-            idCounter += 1
         }
         
         var snapshot = dataSourse.snapshot(for: .list)
         snapshot.deleteAll()
         snapshot.append(classesList)
-        dataSourse.apply(snapshot, to: .list, animatingDifferences: false)
-
-        if classesList.count != 0 {
-            collectionView.scrollToItem(at: [2, classesList.count - 1], at: .centeredVertically, animated: true)
-        }
+        dataSourse.apply(snapshot, to: .list, animatingDifferences: true)
+        
+        /// Scroll to last item
+        guard classesList.count != 0 else { return }
+        collectionView.scrollToItem(at: [2, classesList.count - 1], at: .centeredVertically, animated: true)
     }
 }
-
 protocol ScheduleViewDelegate: AnyObject {
     func showClasses(_ viewModel: ScheduleModels.Classes.ViewModel)
 }

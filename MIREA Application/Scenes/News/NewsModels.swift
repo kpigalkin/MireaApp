@@ -12,34 +12,28 @@
 
 import UIKit
 
-enum NewsModels
-{
-  // MARK: Use cases
-  
-  enum News {
+enum NewsModels {
+    enum News {
+        struct Request {
+            let limit: Int
+        }
       
-    struct Request {
-        let path: String
-    }
+        struct ResponseItem: Decodable {
+            let id: Int
+            let name: String
+            let image: String
+        }
+        typealias Response = [ResponseItem]
       
-    struct ResponseItem: Decodable {
-        let id: Int
-        let name: String
-        let image: String
-    }
-    typealias Response = [ResponseItem]
-      
-    struct ViewModel {
-        let element: [NewsCollectionItem]
-        
-        // added init for "_ .." in call
-        init(_ news: [NewsCollectionItem]) {
-            self.element = news  
+        struct ViewModel {
+            let element: [NewsCollectionItem]
+            init(_ news: [NewsCollectionItem]) {
+                self.element = news
+            }
         }
     }
-  }
     
-    enum SpecificNews {
+    enum NewsElement {
         struct Request {
             let id: Int
         }
@@ -49,11 +43,6 @@ enum NewsModels
             let image: String
             let url: String
         }
-        struct ViewModel {
-            let id: Int
-            let title, date, text: String
-            let image: String
-            let url: String
-        }
+        typealias ViewModel = Response
     }
 }
