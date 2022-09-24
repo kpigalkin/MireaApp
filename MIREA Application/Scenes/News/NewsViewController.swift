@@ -62,9 +62,10 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
     }
     
     func setupNavBar() {
-        navigationItem.title = nil
-        navigationItem.backButtonTitle = ""
-        navigationItem.titleView?.tintColor = .clear
+//        navigationItem.title = nil
+//        navigationItem.backButtonTitle = ""
+//        navigationItem.titleView?.tintColor = .clear
+        navigationController?.navigationBar.isHidden = true
     }
   
   // MARK: View lifecycle

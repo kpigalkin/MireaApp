@@ -40,20 +40,19 @@ extension ScheduleCollectionViewLayoutFactory {
     }
     
     static func createCalendarSectionLayout() -> NSCollectionLayoutSection {
-        let space: CGFloat = 5
         
             // Day cell
         let dayItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .fractionalHeight(1.0))
         let dayItem = NSCollectionLayoutItem(layoutSize: dayItemSize)
-        dayItem.contentInsets = .init(top: space, leading: space, bottom: space, trailing: space)
+        dayItem.contentInsets = .init(top: Const.minSpace, leading: Const.minSpace, bottom: Const.minSpace, trailing: Const.minSpace)
         
             // Week group with day cells
         let weekSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let weekGroup = NSCollectionLayoutGroup.horizontal(layoutSize: weekSize,subitem: dayItem, count: 7)
         
             // Month group with week groups, squared cells
-        let monthGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize( widthDimension: .fractionalWidth(1.0),
-                                                                                              heightDimension: .fractionalWidth(0.85714)),
+        let monthGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.85714)),
                                                           subitem: weekGroup, count: 6)
 
         let section = NSCollectionLayoutSection(group: monthGroup)
@@ -69,9 +68,9 @@ extension ScheduleCollectionViewLayoutFactory {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = Constants.heightSpace
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: Constants.heightSpace, leading: Constants.minSpace,
-                                                             bottom: Constants.heightSpace, trailing: Constants.minSpace)
+        section.interGroupSpacing = Const.middleSpace
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: Const.middleSpace, leading: Const.minSpace,
+                                                             bottom: Const.middleSpace, trailing: Const.minSpace)
         return section
     }
 }

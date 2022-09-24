@@ -18,7 +18,7 @@ class CalendarCell: UICollectionViewCell {
         didSet {
             if self.isSelected {
                 UIView.animate(withDuration: 0.08) { // for animation effect
-                    self.backgroundColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.4)
+                    self.backgroundColor = Color.defaultTheme.orange
                     self.layer.cornerRadius = 0.5 * self.bounds.size.width
 
                 }
@@ -117,8 +117,8 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
     private func makeConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -18),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Const.middleSpace),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Const.middleSpace),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
         ])

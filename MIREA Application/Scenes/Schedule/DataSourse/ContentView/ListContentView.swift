@@ -14,7 +14,7 @@ final class ListContentView: UIView, UIContentView {
     private let classNameTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .heavy)
-        label.textColor = Colors.defaultTheme.dirtyWhite
+        label.textColor = Color.defaultTheme.dirtyWhite
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -23,7 +23,7 @@ final class ListContentView: UIView, UIContentView {
     private let groupTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = Colors.defaultTheme.dirtyWhite.withAlphaComponent(0.9)
+        label.textColor = Color.defaultTheme.dirtyWhite.withAlphaComponent(0.9)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -32,7 +32,7 @@ final class ListContentView: UIView, UIContentView {
     private let classroomTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10, weight: .heavy)
-        label.textColor = Colors.defaultTheme.dirtyWhite.withAlphaComponent(0.85)
+        label.textColor = Color.defaultTheme.dirtyWhite.withAlphaComponent(0.85)
         label.textAlignment = .center
         return label
     }()
@@ -40,7 +40,7 @@ final class ListContentView: UIView, UIContentView {
     private let classTypeTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10, weight: .heavy)
-        label.textColor = Colors.defaultTheme.dirtyWhite.withAlphaComponent(0.85)
+        label.textColor = Color.defaultTheme.dirtyWhite.withAlphaComponent(0.85)
         label.textAlignment = .center
         label.layer.cornerRadius = 5
         label.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
@@ -50,11 +50,11 @@ final class ListContentView: UIView, UIContentView {
     
     private let timeTitle: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.defaultTheme.dirtyWhite
+        label.textColor = Color.defaultTheme.dirtyWhite
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = .monospacedSystemFont(ofSize: 13, weight: .semibold)
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = Const.lowSizeCorner
         label.layer.masksToBounds = true
         return label
     }()
@@ -103,33 +103,34 @@ final class ListContentView: UIView, UIContentView {
             timeTitle.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15),
             
             classroomTitle.trailingAnchor.constraint(equalTo: trailingAnchor),
-            classroomTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.space),
+            classroomTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Const.space),
             classroomTitle.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15),
             classroomTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
             
             classTypeTitle.trailingAnchor.constraint(equalTo: classroomTitle.trailingAnchor),
-            classTypeTitle.topAnchor.constraint(equalTo: topAnchor, constant: Constants.heightSpace),
+            classTypeTitle.topAnchor.constraint(equalTo: topAnchor, constant: Const.middleSpace),
             classTypeTitle.widthAnchor.constraint(equalTo: classroomTitle.widthAnchor),
             classTypeTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.27),
 
-            classNameTitle.topAnchor.constraint(equalTo: topAnchor, constant: 23),
+            classNameTitle.topAnchor.constraint(equalTo: topAnchor, constant: Const.middleSpace),
             classNameTitle.leadingAnchor.constraint(equalTo: timeTitle.trailingAnchor, constant: 7),
             classNameTitle.trailingAnchor.constraint(equalTo: classTypeTitle.leadingAnchor, constant: -7),
             
             groupTitle.leadingAnchor.constraint(equalTo: classNameTitle.leadingAnchor),
             groupTitle.trailingAnchor.constraint(equalTo: classNameTitle.trailingAnchor),
             groupTitle.topAnchor.constraint(equalTo: classNameTitle.bottomAnchor, constant: 30),
-            groupTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.space),
+            groupTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Const.space),
         ])
     }
     
     private func setupView() {
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = Const.lowSizeCorner
         self.layer.masksToBounds = true
 
-        let blur = Colors.makeBlurEffect()
+        let blur = Color.makeBlurEffect()
         blur.frame = self.bounds
         addSubview(blur)
+        backgroundColor = Color.defaultTheme.lightBlack
     }
 }
 
@@ -160,9 +161,9 @@ private extension ListContentView {
         case "ЛК":
             return .lightGray
         case "ПР":
-            return Colors.defaultTheme.red.withAlphaComponent(0.93)
+            return Color.defaultTheme.red.withAlphaComponent(0.93)
         case "ЛАБ":
-            return Colors.defaultTheme.lightBlack
+            return Color.defaultTheme.lightBlack
         default:
             return .black
         }

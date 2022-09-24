@@ -36,9 +36,19 @@ final class NewsPresenter: NewsPresentationLogic {
     }
     
     func presentNewsElement(response: NewsModels.NewsElement.Response) {
-        print("⭕️ presentSpecificNews in NewsPresenter")
+        print("⭕️ presentNewsElement in NewsPresenter")
 
-        let viewModel = response
-        viewController?.displayNewsElement(viewModel: viewModel)        
+        let viewModel = NewsModels.NewsElement.ViewModel(
+            id: response.id, title: response.title,
+            date: formattingDate(date: response.date),
+            text: response.text, image: response.image, url: response.url)
+        viewController?.displayNewsElement(viewModel: viewModel)
+    }
+}
+
+extension NewsPresenter {
+    func formattingDate(date: String) -> String {
+        guard let formatedDate = date.components(separatedBy: "T").first else { return date }
+        return formatedDate
     }
 }

@@ -27,6 +27,17 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic, Sche
     var router: (NSObjectProtocol & ScheduleRoutingLogic)?
     var scheduleView = ScheduleView()
     weak var scheduleViewDelegate: ScheduleViewDelegate?
+    
+    var monthView: UITextView = {
+        let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 120, height: 50))
+        textView.backgroundColor = .clear
+        textView.textAlignment = .center
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.font = .monospacedSystemFont(ofSize: 17, weight: .bold)
+        textView.textColor = Color.defaultTheme.lightText
+        return textView
+    }()
 
   // MARK: Object lifecycle
   
@@ -94,7 +105,8 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic, Sche
     }
     
     func setMonthLabel(month: String) {
-        navigationController?.navigationBar.topItem?.title = month
+//        navigationController?.navigationBar.topItem?.title = month
+        monthView.text = month
     }
 }
 
@@ -108,16 +120,16 @@ private extension ScheduleViewController {
             systemName: "person",
             withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)),
         for: .normal)
-        button.imageView?.tintColor = Colors.defaultTheme.lightBlack
+        button.imageView?.tintColor = Color.defaultTheme.lightText
         button.addAction(UIAction() { [weak self] _ in
             self?.getTeachersList()
         },
             for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
-        navigationItem.titleView?.tintColor = .clear
+        navigationItem.titleView = monthView
     }
 
     func setupBackgroundColor() {
-        view.backgroundColor = Colors.defaultTheme.lightBlue
+        view.backgroundColor = Color.defaultTheme.lightBlue
     }
 }

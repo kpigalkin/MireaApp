@@ -36,7 +36,7 @@ extension UIViewController {
         guard var frame = tabBarController?.tabBar.frame else { return }
         guard frame.origin.y == view.frame.size.height else { return }
         frame.origin.y = view.frame.size.height - frame.size.height
-        UIView.animate(withDuration: 0.2) { self.tabBarController?.tabBar.frame = frame }
+        UIView.animate(withDuration: 0.15) { self.tabBarController?.tabBar.frame = frame }
     }
     
     func hideTabBar() {

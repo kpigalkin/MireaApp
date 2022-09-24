@@ -45,6 +45,7 @@ final class MapViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         print("⭕️ viewDidLoad in MapViewController")
         makeRequest()
+        navigationController?.navigationBar.isHidden = true
     }
 }
 

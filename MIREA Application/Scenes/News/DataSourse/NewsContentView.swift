@@ -16,7 +16,7 @@ final class NewsContentView: UIView, UIContentView {
     private let title: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.9)
+        label.textColor = Color.defaultTheme.lightText
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -24,7 +24,7 @@ final class NewsContentView: UIView, UIContentView {
     
     private let picture: UIImageView = {
         let view = UIImageView()
-        view.layer.cornerRadius = 17
+        view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
         view.backgroundColor = .clear
         view.contentMode = .scaleAspectFill
@@ -64,15 +64,15 @@ final class NewsContentView: UIView, UIContentView {
         title.translatesAutoresizingMaskIntoConstraints = false
         picture.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            picture.topAnchor.constraint(equalTo: topAnchor),
-            picture.widthAnchor.constraint(equalTo: widthAnchor),
+            picture.topAnchor.constraint(equalTo: topAnchor, constant: Const.space),
+            picture.widthAnchor.constraint(equalTo: widthAnchor, constant: -Const.middleSpace),
             picture.centerXAnchor.constraint(equalTo: centerXAnchor),
             picture.heightAnchor.constraint(equalTo: picture.widthAnchor, multiplier: aspectRatio),
             
-            title.topAnchor.constraint(equalTo: picture.bottomAnchor, constant: Constants.space),
-            title.leadingAnchor.constraint(equalTo: picture.leadingAnchor, constant: Constants.space),
-            title.trailingAnchor.constraint(equalTo: picture.trailingAnchor, constant: -Constants.space),
-            title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.space)
+            title.topAnchor.constraint(equalTo: picture.bottomAnchor, constant: Const.space),
+            title.leadingAnchor.constraint(equalTo: picture.leadingAnchor, constant: Const.minSpace),
+            title.trailingAnchor.constraint(equalTo: picture.trailingAnchor, constant: -Const.minSpace),
+            title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Const.space)
         ])
     }
 }
@@ -104,17 +104,8 @@ extension NewsContentView {
     }
     
     private func setupLayer() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemMaterialLight)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.frame = self.bounds
-        addSubview(blurEffectView)
-        
-        layer.cornerRadius = 20
+        backgroundColor = Color.defaultTheme.lightBlack
+        layer.cornerRadius = 17
         layer.masksToBounds = true
-        layer.shadowRadius = 10
-        layer.shadowOpacity = 0
-        layer.shadowOffset = CGSize(width: 0, height: -10)
-        layer.shadowColor = UIColor.black.cgColor
     }
 }

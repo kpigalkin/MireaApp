@@ -21,6 +21,9 @@ final class ScheduleRouter: NSObject, ScheduleRoutingLogic {
   
     func presentPersonSettings(teachersList: ScheduleModels.Teachers.ViewModel) {
         let vc = TeacherListVC(teachers: teachersList)
+        if let presentationController = vc.presentationController as? UISheetPresentationController {
+            presentationController.detents = [.medium()]
+        }
         viewController?.navigationController?.present(vc, animated: true)
     }
 }

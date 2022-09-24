@@ -26,6 +26,8 @@ final class NewsElementVC: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect.zero)
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.bounces = false
         return scrollView
     }()
     
@@ -35,22 +37,23 @@ final class NewsElementVC: UIViewController {
         scrollView.maximumZoomScale = 4
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.layer.cornerRadius = 10
+        scrollView.layer.masksToBounds = true
         return scrollView
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 25, weight: .heavy)
-        label.textColor = .black
+        label.textColor = Color.defaultTheme.lightText
         label.textAlignment = .left
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
         return label
     }()
     
-    private let textLabel: UITextView = {
+    private let textView: UITextView = {
         let textView = UITextView()
-        textView.textColor = .label.withAlphaComponent(0.88)
         textView.backgroundColor = .clear
         textView.textAlignment = .left
         textView.isScrollEnabled = false
@@ -58,104 +61,129 @@ final class NewsElementVC: UIViewController {
         textView.isSelectable = true
         textView.isUserInteractionEnabled = true
         textView.dataDetectorTypes = .link
-        textView.linkTextAttributes = [.foregroundColor : Colors.defaultTheme.red.withAlphaComponent(0.7)]
+        textView.linkTextAttributes = [.foregroundColor : Color.defaultTheme.red.withAlphaComponent(0.7)]
         return textView
     }()
     
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = .darkText
-        label.textAlignment = NSTextAlignment.right
+        label.textColor = Color.defaultTheme.lightText
+        label.textAlignment = .right
         return label
     }()
     
-    private var aspectRatio: CGFloat = 0.75 // Default 16:10 0.625
-    private let picture: UIImageView = {
+    private let zoomPicture: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
-        view.contentScaleFactor = 10
+        view.contentScaleFactor = 5
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    private let topPicture: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
     override func viewDidLoad() {
         print("⭕️ viewDidLoad in NewsElementVC")
         super.viewDidLoad()
-        view.backgroundColor = Colors.defaultTheme.lightBlue
+        setNavigationBar()
         addSubviews()
         makeConstraints()
         configure()
     }
     
+    private func setNavigationBar() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeRight.direction = .right
+        view.addGestureRecognizer(swipeRight)
+    }
+    
     private func configure() {
         print("⭕️ configure in NewsElementVC()")
+        view.backgroundColor = Color.defaultTheme.lightBlue
         imageZoomScrollView.delegate = self
         setupImage()
-        textLabel.attributedText = makeLinks(in: data.text)
-        textLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        textLabel.textColor = .black
+        textView.attributedText = makeLinks(in: data.text)
+        textView.font = .systemFont(ofSize: 16, weight: .medium)
+        textView.textColor = Color.defaultTheme.lightText
         titleLabel.text = data.title
+        dateLabel.text = data.date
     }
-
+ 
     private func makeConstraints() {
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        topPicture.translatesAutoresizingMaskIntoConstraints = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        picture.translatesAutoresizingMaskIntoConstraints = false
+        zoomPicture.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         imageZoomScrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Constants.heightSpace),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Const.longSpace),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            imageZoomScrollView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageZoomScrollView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageZoomScrollView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            imageZoomScrollView.heightAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: aspectRatio),
-            
-            picture.centerXAnchor.constraint(equalTo: imageZoomScrollView.centerXAnchor),
-            picture.centerYAnchor.constraint(equalTo: imageZoomScrollView.centerYAnchor),
-            picture.widthAnchor.constraint(equalTo: imageZoomScrollView.widthAnchor),
-            picture.heightAnchor.constraint(equalTo: imageZoomScrollView.heightAnchor),
+            topPicture.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            topPicture.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            topPicture.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            topPicture.heightAnchor.constraint(equalTo: scrollView.widthAnchor),
 
-            titleLabel.topAnchor.constraint(equalTo: imageZoomScrollView.bottomAnchor, constant: Constants.heightSpace),
-            titleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -Constants.heightSpace * 2),
+            titleLabel.topAnchor.constraint(equalTo: topPicture.bottomAnchor, constant: Const.middleSpace),
+            titleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -Const.longSpace),
             titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.heightSpace),
-            textLabel.widthAnchor.constraint(equalTo: titleLabel.widthAnchor),
-            textLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Const.middleSpace),
+            textView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor),
+            textView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            dateLabel.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: Constants.heightSpace),
-            dateLabel.leadingAnchor.constraint(lessThanOrEqualTo: textLabel.leadingAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: -Constants.space),
-            dateLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -100)
+            dateLabel.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: Const.middleSpace),
+            dateLabel.leadingAnchor.constraint(lessThanOrEqualTo: textView.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: -Const.space),
+            
+            imageZoomScrollView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: Const.middleSpace),
+            imageZoomScrollView.widthAnchor.constraint(equalTo: textView.widthAnchor),
+            imageZoomScrollView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            imageZoomScrollView.heightAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.625),
+            imageZoomScrollView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            zoomPicture.centerXAnchor.constraint(equalTo: imageZoomScrollView.centerXAnchor),
+            zoomPicture.centerYAnchor.constraint(equalTo: imageZoomScrollView.centerYAnchor),
+            zoomPicture.widthAnchor.constraint(equalTo: imageZoomScrollView.widthAnchor),
+            zoomPicture.heightAnchor.constraint(equalTo: imageZoomScrollView.heightAnchor),
         ])
     }
     
     private func addSubviews() {
         view.addSubview(scrollView)
+        scrollView.addSubview(topPicture)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(dateLabel)
-        scrollView.addSubview(textLabel)
+        scrollView.addSubview(textView)
         scrollView.addSubview(imageZoomScrollView)
-        imageZoomScrollView.addSubview(picture)
+        imageZoomScrollView.addSubview(zoomPicture)
     }
 }
 
 extension NewsElementVC: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return picture
+        return zoomPicture
     }
 }
 
 // MARK: Detect links & setup images
 
 private extension NewsElementVC {
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func makeLinks(in textFromServer: String) -> NSMutableAttributedString {
         let wordsArr = splitIntoWords(in: textFromServer)
         let finalText = NSMutableAttributedString(string: "")
@@ -197,7 +225,8 @@ private extension NewsElementVC {
     func setupImage() {
         /// Checking out already-downloaded images in <imageDictionary>
         if let image = NewsContentView.imageDictionary[data.id] {
-            picture.image = image
+            zoomPicture.image = image
+            topPicture.image = image
         } else {
             DispatchQueue.global().async {
                 do {
@@ -206,8 +235,9 @@ private extension NewsElementVC {
                     let data = try Data(contentsOf: url)
                     let img = UIImage(data: data)
                     DispatchQueue.main.async {
-                        self.picture.image = img
-                        NewsContentView.imageDictionary[self.data.id] = self.picture.image
+                        self.zoomPicture.image = img
+                        self.topPicture.image = img
+                        NewsContentView.imageDictionary[self.data.id] = self.zoomPicture.image
                     }
                 }
                 catch {

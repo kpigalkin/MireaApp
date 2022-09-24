@@ -14,7 +14,7 @@ final class TeacherListVC: UIViewController, UITableViewDelegate, UITableViewDat
     private let personTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = Colors.defaultTheme.dirtyWhite
+        label.textColor = Color.defaultTheme.dirtyWhite
         label.textAlignment = .center
         label.text = UserDefaults.standard.string(forKey: UDKeys.name)
         label.clipsToBounds = true
@@ -44,7 +44,7 @@ final class TeacherListVC: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        scrollToSelectedTeacher(key: UDKeys.name)
+        scrollToChosenTeacher(key: UDKeys.name)
     }
     
     // MARK: UITableView
@@ -66,6 +66,7 @@ final class TeacherListVC: UIViewController, UITableViewDelegate, UITableViewDat
         personTitle.text = cell.name
         UserDefaults.standard.set(cell.id, forKey: UDKeys.id)
         UserDefaults.standard.set(cell.name, forKey: UDKeys.name)
+        dismiss(animated: true)
     }
     
 }
@@ -74,7 +75,7 @@ final class TeacherListVC: UIViewController, UITableViewDelegate, UITableViewDat
 
 private extension TeacherListVC {
     func setup() {
-        view.backgroundColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.95)
+        view.backgroundColor = Color.defaultTheme.lightBlack.withAlphaComponent(0.95)
         addSubviews()
         makeConstraints()
     }
@@ -88,21 +89,21 @@ private extension TeacherListVC {
         personTitle.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            personTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            personTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: Const.longSpace),
             personTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            tableView.topAnchor.constraint(equalTo: personTitle.bottomAnchor, constant: Constants.heightSpace),
+            tableView.topAnchor.constraint(equalTo: personTitle.bottomAnchor, constant: Const.middleSpace),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Const.middleSpace)
         ])
     }
     
-    func scrollToSelectedTeacher(key: String) {
+    func scrollToChosenTeacher(key: String) {
         guard let teacherName = UserDefaults.standard.value(forKey: key) else { return }
         guard let adress = teachers.firstIndex(where: { $0.name == teacherName as! String }) else { return }
-        tableView.scrollToRow(at: [0, adress], at: .top, animated: true)
-        tableView.selectRow(at: [0, adress], animated: true, scrollPosition: .top)
+        tableView.scrollToRow(at: [0, adress], at: .top, animated: false)
+        tableView.selectRow(at: [0, adress], animated: false, scrollPosition: .top)
     }
 }
 
@@ -124,7 +125,7 @@ final class PersonCell: UITableViewCell {
         backgroundConfig?.backgroundColor = .clear
 
         if state.isHighlighted || state.isSelected {
-            backgroundConfig?.backgroundColor = Colors.defaultTheme.orange
+            backgroundConfig?.backgroundColor = Color.defaultTheme.orange
             contentConfig.textProperties.color = .white
         }
         contentConfiguration = contentConfig

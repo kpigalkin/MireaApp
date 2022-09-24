@@ -40,7 +40,7 @@
 		DB9D0C1028BFA830001DDB5D /* TeacherListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */; };
 		DBCCF09828D7B7C50043DEE8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCF09728D7B7C50043DEE8 /* Extensions.swift */; };
 		DBCE0B0928A6684300547A82 /* NewsElementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* NewsElementVC.swift */; };
-		DBE10E8328B2249B00F48672 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Constants.swift */; };
+		DBE10E8328B2249B00F48672 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Const.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,7 +79,7 @@
 		DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListVC.swift; sourceTree = "<group>"; };
 		DBCCF09728D7B7C50043DEE8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DBCE0B0828A6684300547A82 /* NewsElementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsElementVC.swift; sourceTree = "<group>"; };
-		DBE10E8228B2249B00F48672 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DBE10E8228B2249B00F48672 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +120,7 @@
 				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
 				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
 				DBCCF09728D7B7C50043DEE8 /* Extensions.swift */,
-				DBE10E8228B2249B00F48672 /* Constants.swift */,
+				DBE10E8228B2249B00F48672 /* Const.swift */,
 				DB0B2590289B38F7005DFE26 /* Scenes */,
 			);
 			path = "MIREA Application";
@@ -304,7 +304,7 @@
 				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
 				DB9D0C0328B9F354001DDB5D /* ScheduleCollectionItem.swift in Sources */,
 				DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */,
-				DBE10E8328B2249B00F48672 /* Constants.swift in Sources */,
+				DBE10E8328B2249B00F48672 /* Const.swift in Sources */,
 				DB9D0C0528B9F371001DDB5D /* ScheduleConfigurations.swift in Sources */,
 				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
 				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,

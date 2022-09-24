@@ -7,9 +7,7 @@
 
 import UIKit
 
-    // MARK:  Sections & Custom cell
-
-
+    // MARK:  Custom cell
 
 class NewsCell: UICollectionViewCell {
     static let identifier = "newsCell"
@@ -35,7 +33,7 @@ final class NewsView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
         view.delegate = self
         view.prefetchDataSource = self
         view.showsVerticalScrollIndicator = false
-        view.backgroundColor = Colors.defaultTheme.lightBlue
+        view.backgroundColor = Color.defaultTheme.lightBlue
         return view
     }()
     

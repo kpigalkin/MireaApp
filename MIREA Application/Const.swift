@@ -8,10 +8,15 @@
 import Foundation
 import UIKit
 
-enum Constants {
+enum Const {
     static let minSpace: CGFloat = 5
     static let space: CGFloat = 10
-    static let heightSpace: CGFloat = 20
+    static let middleSpace: CGFloat = 20
+    static let longSpace: CGFloat = 40
+    
+    static let lowSizeCorner: CGFloat = 10
+    static let midSizeCorner: CGFloat = 17
+    static let highSizeCorner: CGFloat = 20
 }
 
 enum UDKeys {
@@ -19,14 +24,16 @@ enum UDKeys {
     static let name = "name"
 }
 
-enum Colors {
+enum Color {
     struct defaultTheme {
         static let dirtyWhite = UIColor(hexString: "#f3f3f3")
-        static let lightBlack = UIColor(hexString: "#212121").withAlphaComponent(0.99)
-        static let lightBlue = UIColor(hexString: "#D4D7DB")
+        static let lightBlack = UIColor(hexString: "#383c3f")
+        static let lightBlue = UIColor(hexString: "#222629")
         static let red = UIColor(hexString: "#dd3838")
         static let black = UIColor(hexString: "#222222")
         static let orange = UIColor(hexString: "#F57F17")
+        
+        static let lightText = UIColor(hexString: "#eceded")
     }
     
     static func makeBlurEffect() -> UIVisualEffectView {

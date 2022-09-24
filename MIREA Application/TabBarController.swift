@@ -56,14 +56,14 @@ extension TabBarController {
     }
     
     private func setupColor() {
-        let blur = Colors.makeBlurEffect()
+        let blur = Color.makeBlurEffect()
         blur.frame = tabBar.bounds
         tabBar.addSubview(blur)
         
         let appearance = UITabBarAppearance()
         appearance.stackedItemPositioning = .centered
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = Colors.defaultTheme.lightBlack.withAlphaComponent(0.3)
+        appearance.backgroundColor = Color.defaultTheme.lightBlack.withAlphaComponent(0.3)
         
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().standardAppearance = appearance

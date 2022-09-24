@@ -28,7 +28,7 @@ final class NewsRouter: NSObject, NewsRoutingLogic, NewsDataPassing {
         print("⭕️ displaySpecificNews in NewsRouter")
         let vc = NewsElementVC(data: viewModel)
         viewController?.hideTabBar()
-        UIView.transition(from: self.viewController!.view, to: vc.view, duration: 0.2, options: .transitionCrossDissolve)
+        UIView.transition(from: self.viewController!.view, to: vc.view, duration: 0.35, options: .transitionCrossDissolve)
         self.viewController?.navigationController?.pushViewController(vc, animated: false)
     }
 }
