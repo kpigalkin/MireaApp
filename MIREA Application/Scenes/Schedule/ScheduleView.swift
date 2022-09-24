@@ -138,19 +138,13 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard indexPath.section == 1 else { return }
-        guard let cellIndexAtPoint = findCellIndexAtPoint() else { return } /// If cell isn't exist at point when swipe
-        
-        let cell = collectionView.cellForItem(at: cellIndexAtPoint) as? CalendarCell
-        let month = CalendarHelper.reformMonth(month: cell?.month)
-
-        scheduleVCDelegate?.setMonthLabel(month: month)
+        detectVisibleMonth()
     }
     
     // MARK: Filling data
     
     private func appendCalendarItems() {
-        
-    /// Array for number of days & id-counter & weekCounter & adjustment for weekNumber
+        /// Array for number of days & id-counter & weekCounter & adjustment for weekNumber
         var calendar = [ScheduleCollectionItem]()
         var counter = (id: 0, cellCount: 1, nextMonthDays: 1)
         var week = (number: 1, adjustment: 0)
@@ -214,15 +208,18 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
     }
 }
 
-private extension ScheduleView {
-    func findCellIndexAtPoint() -> IndexPath? {
-        let point = CGPoint(x: self.bounds.midX, y: self.bounds.midY * 0.3)
-        let index = collectionView.indexPathForItem(at: point)
-        return index
-    }
-}
-
 extension ScheduleView: ScheduleViewDelegate {
+    func detectVisibleMonth() {
+        print("⭕️ detectVisibleMonth in ScheduleView")
+        let point = CGPoint(x: bounds.midX, y: bounds.midY * 0.3)
+        let index = collectionView.indexPathForItem(at: point)
+        guard let indexPath = index else { return } /// If cell isn't exist at point when swipe
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? CalendarCell
+        let month = CalendarHelper.reformMonth(month: cell?.month)
+        scheduleVCDelegate?.setMonthLabel(month: month)
+    }
+    
     func showClasses(_ viewModel: ScheduleModels.Classes.ViewModel) {
         print("⭕️ showClasses in ScheduleView")
         var classesList = [ScheduleCollectionItem]()

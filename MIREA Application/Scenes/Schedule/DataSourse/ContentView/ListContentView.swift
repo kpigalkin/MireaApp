@@ -126,10 +126,6 @@ final class ListContentView: UIView, UIContentView {
     private func setupView() {
         self.layer.cornerRadius = Const.lowSizeCorner
         self.layer.masksToBounds = true
-
-        let blur = Color.makeBlurEffect()
-        blur.frame = self.bounds
-        addSubview(blur)
         backgroundColor = Color.defaultTheme.lightBlack
     }
 }

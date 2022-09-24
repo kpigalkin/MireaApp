@@ -105,7 +105,6 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic, Sche
     }
     
     func setMonthLabel(month: String) {
-//        navigationController?.navigationBar.topItem?.title = month
         monthView.text = month
     }
 }
@@ -116,9 +115,8 @@ private extension ScheduleViewController {
     func setupNavigationBar() {
         let button = UIButton()
         button.setImage(
-        UIImage(
-            systemName: "person",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)),
+        UIImage(systemName: "person.crop.circle.fill",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)),
         for: .normal)
         button.imageView?.tintColor = Color.defaultTheme.lightText
         button.addAction(UIAction() { [weak self] _ in
