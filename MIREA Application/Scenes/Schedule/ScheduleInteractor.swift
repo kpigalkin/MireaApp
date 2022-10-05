@@ -12,30 +12,67 @@
 
 import UIKit
 
-protocol ScheduleBusinessLogic
-{
-  func doSomething(request: Schedule.Something.Request)
+protocol ScheduleBusinessLogic {
+    func getTeachersList(with request: ScheduleModels.Teachers.Request)
+    func getDayClasses(with request: ScheduleModels.Classes.Request)
 }
 
-protocol ScheduleDataStore
-{
-  //var name: String { get set }
+protocol ScheduleDataStore {
+    var schedule: (classes: ClassItems, stringId: String) { get set }
+    var components: URLComponents { get set }
 }
 
-class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore
-{
-  var presenter: SchedulePresentationLogic?
-  var worker: ScheduleWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Schedule.Something.Request)
-  {
-    worker = ScheduleWorker()
-    worker?.doSomeWork()
+final class ScheduleInteractor: ScheduleBusinessLogic, ScheduleDataStore, DecodeData {
+    var presenter: SchedulePresentationLogic?
+    var schedule = (classes: ClassItems(), stringId: "")
+    var components: URLComponents = {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "tt-mosit.mirea.ru"
+        return components
+    }()
     
-    let response = Schedule.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    func getTeachersList(with request: ScheduleModels.Teachers.Request) {
+        print("⭕️ getTeachersList in ScheduleInteractor")
+        components.path = "/teachers"
+        guard let url = components.url else { return }
+
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            let teachers = self?.decode(TeacherItems.self, from: data)
+            guard let teachers = teachers else { return }
+            DispatchQueue.main.async {
+                let response = ScheduleModels.Teachers.Response(items: teachers)
+                self?.presenter?.presentTeachersList(with: response)
+            }
+        }
+        task.resume()
+    }
+
+    func getDayClasses(with request: ScheduleModels.Classes.Request) {
+        print("⭕️ getDayClasses in ScheduleInteractor")
+        guard let value = UserDefaults.standard.value(forKey: UDKeys.id) else { return }
+        guard let teacherId = value as? Int else { return }
+        let strTeacherId = String(teacherId)
+        // If schedule already downloaded
+        guard schedule.stringId != strTeacherId else {
+            let response = ScheduleModels.Classes.Response(dayClasses: schedule.classes, dayInfo: request)
+            presenter?.presentClasses(with: response)
+            return
+        }
+        // Components
+        components.path = "/teacher_classes/" + strTeacherId
+        guard let url = components.url else { return }
+        // Task
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            let classes = self?.decode(ClassItems.self, from: data)
+            guard let classes = classes else { return }
+            DispatchQueue.main.async {
+                let response = ScheduleModels.Classes.Response(dayClasses: classes, dayInfo: request)
+                self?.presenter?.presentClasses(with: response)
+                self?.schedule.classes = classes
+                self?.schedule.stringId = strTeacherId
+            }
+        }
+        task.resume()
+    }
 }

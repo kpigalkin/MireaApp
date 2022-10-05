@@ -7,17 +7,16 @@
 
 import UIKit
 
+enum NewsSection: Int {
+    case news
+}
+
 struct NewsCollectionItem: Hashable {
     
+    let content: NewsConfiguration
     let uuid = UUID()
-        
-    enum ItemType {
-        case news(config: NewsConfiguration)
-    }
     
-    let content: ItemType
-    
-    init(content: ItemType) {
+    init(content: NewsConfiguration) {
         self.content = content
     }
     

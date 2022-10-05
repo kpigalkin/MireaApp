@@ -12,92 +12,95 @@
 
 import UIKit
 
-protocol NewsDisplayLogic: AnyObject
-{
-  func displayNews(viewModel: NewsModels.News.ViewModel)
+protocol NewsViewControllerDelegate: AnyObject {
+    func userSelectedCell(id: Int)
+    func showLastNews()
 }
 
-final class NewsViewController: UIViewController, NewsDisplayLogic
-{
-  var interactor: NewsBusinessLogic?
-  var router: (NSObjectProtocol & NewsRoutingLogic & NewsDataPassing)?
-    weak var newsViewDelegate: NewsViewDelegate?
-    var newsView = NewsView()
+protocol NewsDisplayLogic: AnyObject {
+    func displayNews(viewModel: NewsModels.News.ViewModel)
+    func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel)
+}
 
-  // MARK: Object lifecycle
+final class NewsViewController: UIViewController {
+    var interactor: NewsBusinessLogic?
+    var router: (NSObjectProtocol & NewsRoutingLogic)?
+    var newsView = NewsView()
+    weak var newsViewDelegate: NewsViewDelegate?
+    lazy var presentDelegate = TransitioningDelegate()
+
+            
+    // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    print("⭕️ init in NewsViewController")
-      
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-  }
-  
-  // MARK: Setup
-  
-  private func setup() {
-    let viewController = self
-    let interactor = NewsInteractor()
-    let presenter = NewsPresenter()
-    let router = NewsRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = self
-    router.viewController = self
-    router.dataStore = interactor
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        print("⭕️ init in NewsViewController")
+        setup()
+    }
     
-    newsViewDelegate = newsView
-  }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
   
-  // MARK: Routing
+    // MARK: Setup
   
-//  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-//  {
-//    if let scene = segue.identifier {
-//      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//      if let router = router, router.responds(to: selector) {
-//        router.perform(selector, with: segue)
-//      }
-//    }
-//  }
+    private func setup() {
+        print("⭕️ setup in NewsViewController")
+        let viewController = self
+        let interactor = NewsInteractor()
+        let presenter = NewsPresenter()
+        let router = NewsRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        newsView.newsViewControllerDelegate = self
+        newsViewDelegate = newsView
+    }
+    
+    func setupNavBar() {
+        navigationController?.navigationBar.isHidden = true
+    }
   
   // MARK: View lifecycle
     
     override func loadView() {
         print("⭕️ loadView in NewsViewController")
-        
-        super.loadView()
+        view = newsView
+        showLastNews()
+        setupNavBar()
     }
-  
-    override func viewDidLoad() {
-        print("⭕️ viewDidLoad in NewsViewController")
-      
-        super.viewDidLoad()
-        self.view = newsView
-
-        makeRequest()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showTabBar()
     }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func makeRequest() {
-      print("⭕️ makingRequest in NewsViewController")
-      
-      let request = NewsModels.News.Request(path: "/news")
-      interactor?.getResponseFromMireaServer(request: request)
-  }
-  
+}
+    
+    // MARK: Display logic
+    
+extension NewsViewController: NewsViewControllerDelegate, NewsDisplayLogic {
     func displayNews(viewModel: NewsModels.News.ViewModel) {
         print("⭕️ displayNews in NewsViewController")
-        newsView.showNews(viewModel)
+        newsViewDelegate?.showNews(viewModel)
+    }
+    
+    func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel) {
+        print("⭕️ displaySpecificNews in NewsViewController")
+        self.router?.displayNewsElement(viewModel: viewModel)
+    }
+    
+    func showLastNews() {
+        print("⭕️ makingRequest in NewsViewController")
+        let request = NewsModels.News.Request(limit: 20) /// in perspective user will be able to choose 20 or 10
+        interactor?.getNewsFromServer(request: request)
+    }
+    
+    func userSelectedCell(id: Int) {
+        print("⭕️ userSelectedCell in NewsViewController")
+        let request = NewsModels.NewsElement.Request.init(id: id)
+        interactor?.getNewsElement(request: request)
     }
 }

@@ -12,49 +12,30 @@
 
 import UIKit
 
-@objc protocol NewsRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+protocol NewsRoutingLogic {
+    func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel)
 }
 
-protocol NewsDataPassing
-{
-  var dataStore: NewsDataStore? { get }
-}
-
-final class NewsRouter: NSObject, NewsRoutingLogic, NewsDataPassing
-{
-  weak var viewController: NewsViewController?
-  var dataStore: NewsDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: NewsViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: NewsDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+final class NewsRouter: NSObject, NewsRoutingLogic {
+    weak var viewController: NewsViewController?
+    weak var newsElementVC: NewsElementVC?
+    
+    func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel) {
+        print("⭕️ displaySpecificNews in NewsRouter")
+        let vc = NewsElementVC()
+        newsElementVC = vc
+        newsElementVC?.configure(data: viewModel)
+        
+        guard let newsElementVC = newsElementVC,
+              let viewController = viewController
+        else {
+            return
+        }
+        
+        let delegate = viewController.presentDelegate
+        newsElementVC.transitioningDelegate = delegate
+        newsElementVC.modalPresentationStyle = .custom
+        
+        viewController.present(newsElementVC, animated: true)
+    }
 }

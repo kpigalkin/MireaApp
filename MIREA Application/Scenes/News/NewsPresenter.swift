@@ -14,29 +14,40 @@ import UIKit
 
 protocol NewsPresentationLogic {
     func presentNews(response: NewsModels.News.Response)
+    func presentNewsElement(response: NewsModels.NewsElement.Response)
 }
 
 final class NewsPresenter: NewsPresentationLogic {
+    weak var viewController: NewsDisplayLogic?
+  
+    func presentNews(response: NewsModels.News.Response) {
+        print("⭕️ presentNews in NewsPresenter")
+        
+        var news = [NewsCollectionItem]()
+        for item in response.items {
+            let url = URL(string: item.image)
+            let element = NewsCollectionItem(content: .init(
+                id: item.id, name: item.name, imageUrl: url))
+            news.append(element)
+        }
+        let viewModel = NewsModels.News.ViewModel(element: news)
+        viewController?.displayNews(viewModel: viewModel)
+    }
     
-  weak var viewController: NewsDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentNews(response: NewsModels.News.Response) {
-      print("⭕️ presentNews in NewsPresenter")
+    func presentNewsElement(response: NewsModels.NewsElement.Response) {
+        print("⭕️ presentNewsElement in NewsPresenter")
+        let url = URL(string: response.image)
+        let viewModel = NewsModels.NewsElement.ViewModel(
+            id: response.id, title: response.title,
+            date: formattingDate(date: response.date),
+            text: response.text, imageURL: url)
+        viewController?.displayNewsElement(viewModel: viewModel)
+    }
+}
 
-      
-      var news = [NewsCollectionItem]()
-    
-      for item in response {
-          let element = NewsCollectionItem(content: .news(config: .init(
-            id: item.id,
-            name: item.name,
-            image: item.image)))
-          news.append(element)
-      }
-      
-      let viewModel = NewsModels.News.ViewModel(news)
-      viewController?.displayNews(viewModel: viewModel)
-  }
+extension NewsPresenter {
+    func formattingDate(date: String) -> String {
+        guard let formatedDate = date.components(separatedBy: "T").first else { return date }
+        return formatedDate
+    }
 }

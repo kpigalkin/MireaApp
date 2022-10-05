@@ -12,49 +12,18 @@
 
 import UIKit
 
-@objc protocol ScheduleRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+protocol ScheduleRoutingLogic {
+    func presentPersonSettings(teachersList: ScheduleModels.Teachers.ViewModel)
 }
 
-protocol ScheduleDataPassing
-{
-  var dataStore: ScheduleDataStore? { get }
-}
-
-class ScheduleRouter: NSObject, ScheduleRoutingLogic, ScheduleDataPassing
-{
-  weak var viewController: ScheduleViewController?
-  var dataStore: ScheduleDataStore?
+final class ScheduleRouter: NSObject, ScheduleRoutingLogic {
+    weak var viewController: ScheduleViewController?
   
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: ScheduleViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: ScheduleDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    func presentPersonSettings(teachersList: ScheduleModels.Teachers.ViewModel) {
+        let vc = TeacherListVC(teachers: teachersList)
+        if let presentationController = vc.presentationController as? UISheetPresentationController {
+            presentationController.detents = [.medium()]
+        }
+        viewController?.navigationController?.present(vc, animated: true)
+    }
 }

@@ -12,78 +12,122 @@
 
 import UIKit
 
-protocol ScheduleDisplayLogic: class
-{
-  func displaySomething(viewModel: Schedule.Something.ViewModel)
+protocol ScheduleDisplayLogic: AnyObject {
+    func routeToPersonSettings(viewModel: ScheduleModels.Teachers.ViewModel)
+    func displayDayClasses(viewModel: ScheduleModels.Classes.ViewModel)
 }
 
-class ScheduleViewController: UIViewController, ScheduleDisplayLogic
-{
-  var interactor: ScheduleBusinessLogic?
-  var router: (NSObjectProtocol & ScheduleRoutingLogic & ScheduleDataPassing)?
+protocol ScheduleVСDelegate: AnyObject {
+    func getClassesForSpecificDay(weekDay: Int, weekNumber: Int)
+    func setMonthLabel(month: String)
+}
+
+final class ScheduleViewController: UIViewController, ScheduleDisplayLogic, ScheduleVСDelegate {
+    var interactor: ScheduleBusinessLogic?
+    var router: (NSObjectProtocol & ScheduleRoutingLogic)?
+    var scheduleView = ScheduleView()
+    weak var scheduleViewDelegate: ScheduleViewDelegate?
+    
+    var monthView: UITextView = {
+        let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 120, height: 50))
+        textView.backgroundColor = .clear
+        textView.textAlignment = .center
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.font = .monospacedSystemFont(ofSize: 17, weight: .bold)
+        textView.textColor = Color.defaultDark.lightText
+        return textView
+    }()
 
   // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = ScheduleInteractor()
-    let presenter = SchedulePresenter()
-    let router = ScheduleRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = self
-    router.viewController = self
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        print("⭕️ init in ScheduleViewController")
+        setup()
     }
+  
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+  
+    // MARK: Setup
+  
+    private func setup() {
+        let viewController = self
+        let interactor = ScheduleInteractor()
+        let presenter = SchedulePresenter()
+        let router = ScheduleRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = self
+        router.viewController = self
+        scheduleView.scheduleVCDelegate = self
+        scheduleViewDelegate = scheduleView
   }
   
-  // MARK: View lifecycle
+    // MARK:  Routing
   
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
+    func routeToPersonSettings(viewModel: ScheduleModels.Teachers.ViewModel) {
+        router?.presentPersonSettings(teachersList: viewModel)
+    }
   
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Schedule.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Schedule.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    // MARK: View lifecycle
+    
+    override func loadView() {
+        view = scheduleView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigationBar()
+        setupBackgroundColor()
+    }
+    
+        // MARK:  Requests & Displaying
+    
+    func getTeachersList() {
+        print("⭕️ getTeachers in ScheduleViewController")
+        let request = ScheduleModels.Teachers.Request()
+        interactor?.getTeachersList(with: request)
+    }
+    
+    func getClassesForSpecificDay(weekDay: Int, weekNumber: Int) {
+        print("⭕️ getClassesForSpecificDay in ScheduleViewController")
+        let request = ScheduleModels.Classes.Request(weekDay: weekDay, weekNumber: weekNumber)
+        interactor?.getDayClasses(with: request)
+    }
+    
+    func displayDayClasses(viewModel: ScheduleModels.Classes.ViewModel) {
+        scheduleViewDelegate?.showClasses(viewModel)
+    }
+    
+    func setMonthLabel(month: String) {
+        monthView.text = month
+    }
+}
+
+    // MARK:  Background color & NavBar
+
+private extension ScheduleViewController {
+    func setupNavigationBar() {
+        let button = UIButton()
+        button.setImage(
+        UIImage(systemName: "person.crop.circle.fill",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)),
+        for: .normal)
+        button.imageView?.tintColor = Color.defaultDark.lightText
+        button.addAction(UIAction() { [weak self] _ in
+            self?.getTeachersList()
+        },
+            for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        navigationItem.titleView = monthView
+    }
+
+    func setupBackgroundColor() {
+        view.backgroundColor = Color.defaultDark.lightBlue
+    }
 }
