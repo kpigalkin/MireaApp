@@ -35,7 +35,7 @@ final class ScheduleViewController: UIViewController, ScheduleDisplayLogic, Sche
         textView.isScrollEnabled = false
         textView.isEditable = false
         textView.font = .monospacedSystemFont(ofSize: 17, weight: .bold)
-        textView.textColor = Color.defaultTheme.lightText
+        textView.textColor = Color.defaultDark.lightText
         return textView
     }()
 
@@ -118,7 +118,7 @@ private extension ScheduleViewController {
         UIImage(systemName: "person.crop.circle.fill",
                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)),
         for: .normal)
-        button.imageView?.tintColor = Color.defaultTheme.lightText
+        button.imageView?.tintColor = Color.defaultDark.lightText
         button.addAction(UIAction() { [weak self] _ in
             self?.getTeachersList()
         },
@@ -128,6 +128,6 @@ private extension ScheduleViewController {
     }
 
     func setupBackgroundColor() {
-        view.backgroundColor = Color.defaultTheme.lightBlue
+        view.backgroundColor = Color.defaultDark.lightBlue
     }
 }

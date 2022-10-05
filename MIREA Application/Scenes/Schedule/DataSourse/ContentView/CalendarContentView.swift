@@ -46,6 +46,6 @@ final class CalendarContentView: UIView, UIContentView {
     }
     
     private func setupCellColor(monthStatus: Bool) {
-        title.textColor = monthStatus ? Color.defaultTheme.lightText : UIColor.gray.withAlphaComponent(0.5)
+        title.textColor = monthStatus ? Color.defaultDark.lightText : UIColor.gray.withAlphaComponent(0.5)
     }
 }

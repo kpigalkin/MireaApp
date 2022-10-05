@@ -16,19 +16,26 @@ protocol NewsRoutingLogic {
     func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel)
 }
 
-protocol NewsDataPassing {
-  var dataStore: NewsDataStore? { get }
-}
-
-final class NewsRouter: NSObject, NewsRoutingLogic, NewsDataPassing {
-  weak var viewController: NewsViewController?
-  var dataStore: NewsDataStore?
-  
+final class NewsRouter: NSObject, NewsRoutingLogic {
+    weak var viewController: NewsViewController?
+    weak var newsElementVC: NewsElementVC?
+    
     func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel) {
         print("⭕️ displaySpecificNews in NewsRouter")
-        let vc = NewsElementVC(data: viewModel)
-        viewController?.hideTabBar()
-        UIView.transition(from: self.viewController!.view, to: vc.view, duration: 0.35, options: .transitionCrossDissolve)
-        self.viewController?.navigationController?.pushViewController(vc, animated: false)
+        let vc = NewsElementVC()
+        newsElementVC = vc
+        newsElementVC?.configure(data: viewModel)
+        
+        guard let newsElementVC = newsElementVC,
+              let viewController = viewController
+        else {
+            return
+        }
+        
+        let delegate = viewController.presentDelegate
+        newsElementVC.transitioningDelegate = delegate
+        newsElementVC.modalPresentationStyle = .custom
+        
+        viewController.present(newsElementVC, animated: true)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12B986150003B48C680BCD65 /* Pods_MIREA_Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99DA50A8BC0F06AEA0F850EE /* Pods_MIREA_Application.framework */; };
 		DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */; };
 		DB0B2581289B37B1005DFE26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */; };
 		DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B2589289B37D0005DFE26 /* AppDelegate.swift */; };
@@ -27,6 +28,13 @@
 		DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BB289E7870005DFE26 /* NewsView.swift */; };
 		DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */; };
 		DB0B25C1289E8464005DFE26 /* NewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B25C0289E8464005DFE26 /* NewsContentView.swift */; };
+		DB2E926228ECC42900E02C78 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E926128ECC42900E02C78 /* PresentationController.swift */; };
+		DB2E926428ECC46D00E02C78 /* TransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E926328ECC46D00E02C78 /* TransitioningDelegate.swift */; };
+		DB2E926628EDE40B00E02C78 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E926528EDE40B00E02C78 /* AnimatedTransitioning.swift */; };
+		DB2EC0CA28E6491E008C7B0E /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2EC0C928E6491E008C7B0E /* PersonCell.swift */; };
+		DB2EC0CF28E6D0BE008C7B0E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2EC0CE28E6D0BE008C7B0E /* Color.swift */; };
+		DB41DB6228E5EF18001152B9 /* NewsModelItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41DB6128E5EF18001152B9 /* NewsModelItems.swift */; };
+		DB41DB6528E62EFB001152B9 /* ScheduleItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41DB6428E62EFB001152B9 /* ScheduleItems.swift */; };
 		DB5BFBE328D50F5B003FF6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5BFBE228D50F5B003FF6AD /* Assets.xcassets */; };
 		DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */; };
 		DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */; };
@@ -40,10 +48,13 @@
 		DB9D0C1028BFA830001DDB5D /* TeacherListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */; };
 		DBCCF09828D7B7C50043DEE8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCCF09728D7B7C50043DEE8 /* Extensions.swift */; };
 		DBCE0B0928A6684300547A82 /* NewsElementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCE0B0828A6684300547A82 /* NewsElementVC.swift */; };
-		DBE10E8328B2249B00F48672 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* Const.swift */; };
+		DBE10E8328B2249B00F48672 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE10E8228B2249B00F48672 /* UserDefaultsKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7767866CCF5B923FBAB2713E /* Pods-MIREA Application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIREA Application.release.xcconfig"; path = "Target Support Files/Pods-MIREA Application/Pods-MIREA Application.release.xcconfig"; sourceTree = "<group>"; };
+		99DA50A8BC0F06AEA0F850EE /* Pods_MIREA_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIREA_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5D26AD1F8276FF0BE6AA848 /* Pods-MIREA Application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIREA Application.debug.xcconfig"; path = "Target Support Files/Pods-MIREA Application/Pods-MIREA Application.debug.xcconfig"; sourceTree = "<group>"; };
 		DB0B2571289B37B0005DFE26 /* MIREA Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIREA Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DB0B2580289B37B1005DFE26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,6 +77,13 @@
 		DB0B25BB289E7870005DFE26 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		DB0B25BE289E829D005DFE26 /* NewsCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionItem.swift; sourceTree = "<group>"; };
 		DB0B25C0289E8464005DFE26 /* NewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentView.swift; sourceTree = "<group>"; };
+		DB2E926128ECC42900E02C78 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		DB2E926328ECC46D00E02C78 /* TransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningDelegate.swift; sourceTree = "<group>"; };
+		DB2E926528EDE40B00E02C78 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
+		DB2EC0C928E6491E008C7B0E /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		DB2EC0CE28E6D0BE008C7B0E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		DB41DB6128E5EF18001152B9 /* NewsModelItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModelItems.swift; sourceTree = "<group>"; };
+		DB41DB6428E62EFB001152B9 /* ScheduleItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItems.swift; sourceTree = "<group>"; };
 		DB5BFBE228D50F5B003FF6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfiguration.swift; sourceTree = "<group>"; };
 		DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
@@ -79,7 +97,7 @@
 		DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherListVC.swift; sourceTree = "<group>"; };
 		DBCCF09728D7B7C50043DEE8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DBCE0B0828A6684300547A82 /* NewsElementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsElementVC.swift; sourceTree = "<group>"; };
-		DBE10E8228B2249B00F48672 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		DBE10E8228B2249B00F48672 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +105,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12B986150003B48C680BCD65 /* Pods_MIREA_Application.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C51A201E2D482512FF5C235 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5D26AD1F8276FF0BE6AA848 /* Pods-MIREA Application.debug.xcconfig */,
+				7767866CCF5B923FBAB2713E /* Pods-MIREA Application.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B4AE1E548FCC329B6DBF6F62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99DA50A8BC0F06AEA0F850EE /* Pods_MIREA_Application.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DB0B2568289B37B0005DFE26 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +136,8 @@
 				DB0B257F289B37B1005DFE26 /* LaunchScreen.storyboard */,
 				DB0B2573289B37B0005DFE26 /* MIREA Application */,
 				DB0B2572289B37B0005DFE26 /* Products */,
+				7C51A201E2D482512FF5C235 /* Pods */,
+				B4AE1E548FCC329B6DBF6F62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,8 +157,7 @@
 				DB0B2576289B37B0005DFE26 /* SceneDelegate.swift */,
 				DB0B2589289B37D0005DFE26 /* AppDelegate.swift */,
 				DB0B258B289B37D0005DFE26 /* TabBarController.swift */,
-				DBCCF09728D7B7C50043DEE8 /* Extensions.swift */,
-				DBE10E8228B2249B00F48672 /* Const.swift */,
+				DB2EC0CD28E6D0A1008C7B0E /* Constants */,
 				DB0B2590289B38F7005DFE26 /* Scenes */,
 			);
 			path = "MIREA Application";
@@ -147,13 +184,13 @@
 		DB0B2592289B390C005DFE26 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */,
 				DB0B25A2289B3940005DFE26 /* ScheduleRouter.swift */,
-				DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */,
 				DB0B25A0289B3940005DFE26 /* SchedulePresenter.swift */,
 				DB0B25A5289B3940005DFE26 /* ScheduleInteractor.swift */,
 				DB0B25A4289B3940005DFE26 /* ScheduleViewController.swift */,
 				DB9D0BFB28B8DF10001DDB5D /* ScheduleView.swift */,
+				DB2EC0C828E648FF008C7B0E /* TeacherScene */,
+				DB41DB6328E62EE6001152B9 /* Models */,
 				DB9D0BFF28B9F31E001DDB5D /* DataSourse */,
 			);
 			path = Schedule;
@@ -164,11 +201,12 @@
 			children = (
 				DBCE0B0828A6684300547A82 /* NewsElementVC.swift */,
 				DB0B2596289B392D005DFE26 /* NewsRouter.swift */,
-				DB0B2597289B392D005DFE26 /* NewsModels.swift */,
 				DB0B2594289B392D005DFE26 /* NewsPresenter.swift */,
 				DB0B2599289B392D005DFE26 /* NewsInteractor.swift */,
 				DB0B2598289B392D005DFE26 /* NewsViewController.swift */,
 				DB0B25BB289E7870005DFE26 /* NewsView.swift */,
+				DB2E925C28EC850700E02C78 /* CustomTransition */,
+				DB41DB6028E5EF04001152B9 /* Models */,
 				DB0B25BD289E825F005DFE26 /* DataSourse */,
 			);
 			path = News;
@@ -183,6 +221,53 @@
 				DB9D0BF928B7A6F7001DDB5D /* NewsConfiguration.swift */,
 			);
 			path = DataSourse;
+			sourceTree = "<group>";
+		};
+		DB2E925C28EC850700E02C78 /* CustomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				DB2E926328ECC46D00E02C78 /* TransitioningDelegate.swift */,
+				DB2E926528EDE40B00E02C78 /* AnimatedTransitioning.swift */,
+				DB2E926128ECC42900E02C78 /* PresentationController.swift */,
+			);
+			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		DB2EC0C828E648FF008C7B0E /* TeacherScene */ = {
+			isa = PBXGroup;
+			children = (
+				DB9D0C0F28BFA830001DDB5D /* TeacherListVC.swift */,
+				DB2EC0C928E6491E008C7B0E /* PersonCell.swift */,
+			);
+			path = TeacherScene;
+			sourceTree = "<group>";
+		};
+		DB2EC0CD28E6D0A1008C7B0E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				DBCCF09728D7B7C50043DEE8 /* Extensions.swift */,
+				DB2EC0CE28E6D0BE008C7B0E /* Color.swift */,
+				DBE10E8228B2249B00F48672 /* UserDefaultsKeys.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		DB41DB6028E5EF04001152B9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B2597289B392D005DFE26 /* NewsModels.swift */,
+				DB41DB6128E5EF18001152B9 /* NewsModelItems.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DB41DB6328E62EE6001152B9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB0B25A3289B3940005DFE26 /* ScheduleModels.swift */,
+				DB41DB6428E62EFB001152B9 /* ScheduleItems.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DB9D0BFF28B9F31E001DDB5D /* DataSourse */ = {
@@ -214,9 +299,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB0B2585289B37B1005DFE26 /* Build configuration list for PBXNativeTarget "MIREA Application" */;
 			buildPhases = (
+				9BA541AD0B7241BD797965F2 /* [CP] Check Pods Manifest.lock */,
 				DB0B256D289B37B0005DFE26 /* Sources */,
 				DB0B256E289B37B0005DFE26 /* Frameworks */,
 				DB0B256F289B37B0005DFE26 /* Resources */,
+				B834A57BA17CE5A35DD7CDFC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,24 +359,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9BA541AD0B7241BD797965F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MIREA Application-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B834A57BA17CE5A35DD7CDFC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MIREA Application/Pods-MIREA Application-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MIREA Application/Pods-MIREA Application-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MIREA Application/Pods-MIREA Application-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DB0B256D289B37B0005DFE26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB41DB6228E5EF18001152B9 /* NewsModelItems.swift in Sources */,
+				DB41DB6528E62EFB001152B9 /* ScheduleItems.swift in Sources */,
 				DB0B25AB289B3940005DFE26 /* ScheduleInteractor.swift in Sources */,
 				DB0B25BA289E71C5005DFE26 /* NewsCollectionViewLayoutFactory.swift in Sources */,
 				DB9D0C0728B9F539001DDB5D /* ListContentView.swift in Sources */,
 				DB0B258D289B37D0005DFE26 /* AppDelegate.swift in Sources */,
+				DB2EC0CA28E6491E008C7B0E /* PersonCell.swift in Sources */,
 				DB9D0BFC28B8DF10001DDB5D /* ScheduleView.swift in Sources */,
 				DBCE0B0928A6684300547A82 /* NewsElementVC.swift in Sources */,
 				DB0B259C289B392D005DFE26 /* NewsRouter.swift in Sources */,
+				DB2E926428ECC46D00E02C78 /* TransitioningDelegate.swift in Sources */,
+				DB2EC0CF28E6D0BE008C7B0E /* Color.swift in Sources */,
 				DB9D0BFE28B9F318001DDB5D /* CalendarContentView.swift in Sources */,
 				DB0B25BF289E829D005DFE26 /* NewsCollectionItem.swift in Sources */,
 				DB0B25AA289B3940005DFE26 /* ScheduleViewController.swift in Sources */,
 				DB0B259E289B392D005DFE26 /* NewsViewController.swift in Sources */,
 				DB0B258F289B37D0005DFE26 /* TabBarController.swift in Sources */,
 				DBCCF09828D7B7C50043DEE8 /* Extensions.swift in Sources */,
+				DB2E926628EDE40B00E02C78 /* AnimatedTransitioning.swift in Sources */,
 				DB9D0C0E28BE3168001DDB5D /* WeekDaysContentView.swift in Sources */,
 				DB9D0BFA28B7A6F7001DDB5D /* NewsConfiguration.swift in Sources */,
 				DB0B259F289B392D005DFE26 /* NewsInteractor.swift in Sources */,
@@ -304,8 +439,9 @@
 				DB0B25BC289E7870005DFE26 /* NewsView.swift in Sources */,
 				DB9D0C0328B9F354001DDB5D /* ScheduleCollectionItem.swift in Sources */,
 				DB0B25A6289B3940005DFE26 /* SchedulePresenter.swift in Sources */,
-				DBE10E8328B2249B00F48672 /* Const.swift in Sources */,
+				DBE10E8328B2249B00F48672 /* UserDefaultsKeys.swift in Sources */,
 				DB9D0C0528B9F371001DDB5D /* ScheduleConfigurations.swift in Sources */,
+				DB2E926228ECC42900E02C78 /* PresentationController.swift in Sources */,
 				DB0B258E289B37D0005DFE26 /* NavigationViewController.swift in Sources */,
 				DB0B2577289B37B0005DFE26 /* SceneDelegate.swift in Sources */,
 				DB0B259D289B392D005DFE26 /* NewsModels.swift in Sources */,
@@ -444,6 +580,7 @@
 		};
 		DB0B2586289B37B1005DFE26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5D26AD1F8276FF0BE6AA848 /* Pods-MIREA Application.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -472,6 +609,7 @@
 		};
 		DB0B2587289B37B1005DFE26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7767866CCF5B923FBAB2713E /* Pods-MIREA Application.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

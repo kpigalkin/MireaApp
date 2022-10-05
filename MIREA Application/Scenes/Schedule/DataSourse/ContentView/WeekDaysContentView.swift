@@ -14,7 +14,7 @@ final class WeekDaysContentView: UIView, UIContentView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .heavy)
         label.font = .monospacedDigitSystemFont(ofSize: 13, weight: .semibold)
-        label.textColor = Color.defaultTheme.lightText
+        label.textColor = Color.defaultDark.lightText
         label.textAlignment = .center
         return label
     }()

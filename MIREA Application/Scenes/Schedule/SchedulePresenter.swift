@@ -24,26 +24,28 @@ final class SchedulePresenter: SchedulePresentationLogic {
         print("⭕️ presentTeachersList in SchedulePresenter")
         // Cleaning dirt in data from server
         let charset = CharacterSet(charactersIn: "а"..."я")
-        let viewModel = response.filter {
+        let items = response.items.filter {
             $0.name.lowercased().rangeOfCharacter(from: charset) != nil
         }
+        let viewModel = ScheduleModels.Teachers.ViewModel(items: items)
         viewController?.routeToPersonSettings(viewModel: viewModel)
     }
     
     func presentClasses(with response: ScheduleModels.Classes.Response) {
         let weekdayClasses = response.dayClasses[response.dayInfo.weekDay - 1]
-        var viewModel = ScheduleModels.Classes.ViewModel()
+        var items = [Subject]()
         let isEven = response.dayInfo.weekNumber % 2 == 0
     
-        let parityPath = isEven ? \ScheduleModels.Classes.ResponseValue.even : \ScheduleModels.Classes.ResponseValue.odd
+        let parityPath = isEven ? \ClassItem.even : \ClassItem.odd
         weekdayClasses.forEach { weekDay in
             weekDay.value[keyPath: parityPath].forEach { dayClasses in
                 if dayClasses.weeks.contains(response.dayInfo.weekNumber) {
-                    viewModel.append(dayClasses)
+                    items.append(dayClasses)
                 }
             }
         }
-        viewModel = viewModel.sorted { $0.number < $1.number }
+        items = items.sorted { $0.number < $1.number }
+        let viewModel = ScheduleModels.Classes.ViewModel(items: items)
         viewController?.displayDayClasses(viewModel: viewModel)
     }
 }

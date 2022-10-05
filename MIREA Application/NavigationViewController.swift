@@ -8,8 +8,17 @@
 import UIKit
 
 final class NavigationController: UINavigationController {
-    override func loadView() {
-        super.loadView()
+    
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setup() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .clear

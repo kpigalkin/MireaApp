@@ -1,5 +1,5 @@
 //
-//  TabBarControllerViewController.swift
+//  TabBarController.swift
 //  Mirea App
 //
 //  Created by Кирилл Пигалкин on 03.08.2022.
@@ -63,7 +63,7 @@ extension TabBarController {
         let appearance = UITabBarAppearance()
         appearance.stackedItemPositioning = .centered
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = Color.defaultTheme.lightBlack.withAlphaComponent(0.3)
+        appearance.backgroundColor = Color.defaultDark.lightBlack.withAlphaComponent(0.3)
         
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().standardAppearance = appearance

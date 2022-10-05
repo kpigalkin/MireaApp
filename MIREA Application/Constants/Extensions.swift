@@ -30,7 +30,6 @@ extension UIColor {
     }
 }
 
-// MARK: - Animate tabBar hiding
 extension UIViewController {
     func showTabBar() {
         guard var frame = tabBarController?.tabBar.frame else { return }
@@ -43,5 +42,19 @@ extension UIViewController {
         guard var frame = tabBarController?.tabBar.frame else { return }
         frame.origin.y = view.frame.size.height
         UIView.animate(withDuration: 0.25) { self.tabBarController?.tabBar.frame = frame }
+    }
+}
+
+    // MARK: - Decoder for Interactors
+
+protocol DecodeData: AnyObject {
+    func decode<T: Decodable>(_ type: T.Type, from data: Data?) -> T?
+}
+extension DecodeData {
+    func decode<T: Decodable>(_ type: T.Type, from data: Data?) -> T? {
+        guard let data = data, let items = try? JSONDecoder().decode(type, from: data) else {
+            return nil
+        }
+        return items
     }
 }

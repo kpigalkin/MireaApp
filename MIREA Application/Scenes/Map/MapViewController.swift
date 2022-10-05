@@ -64,11 +64,9 @@ private extension MapViewController {
     }
     
     func makeRequest() {
-        guard let url = self.components.url else { return }
-        let myRequest = URLRequest(url: url)
-        DispatchQueue.main.async {
-            self.webView.load(myRequest)
-        }
+        guard let url = components.url else { return }
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
     
     func disableZoom() -> WKUserScript {

@@ -34,13 +34,13 @@ extension NewsCollectionViewLayoutFactory {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = Const.longSpace
+        section.interGroupSpacing = 40
         section.accessibilityScroll(.previous)
         section.contentInsets = NSDirectionalEdgeInsets.init(
-            top: Const.space,
-            leading: Const.space,
-            bottom: Const.longSpace,
-            trailing: Const.space)
+            top: 10,
+            leading: 10,
+            bottom: 10,
+            trailing: 10)
         return section
     }
 }

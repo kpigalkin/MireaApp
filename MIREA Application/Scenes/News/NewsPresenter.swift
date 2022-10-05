@@ -24,24 +24,23 @@ final class NewsPresenter: NewsPresentationLogic {
         print("⭕️ presentNews in NewsPresenter")
         
         var news = [NewsCollectionItem]()
-        for item in response {
+        for item in response.items {
             let url = URL(string: item.image)
-            let element = NewsCollectionItem(content: .news(config: .init(
-                id: item.id, name: item.name, imageUrl: url
-            )))
+            let element = NewsCollectionItem(content: .init(
+                id: item.id, name: item.name, imageUrl: url))
             news.append(element)
         }
-        let viewModel = NewsModels.News.ViewModel(news)
+        let viewModel = NewsModels.News.ViewModel(element: news)
         viewController?.displayNews(viewModel: viewModel)
     }
     
     func presentNewsElement(response: NewsModels.NewsElement.Response) {
         print("⭕️ presentNewsElement in NewsPresenter")
-
+        let url = URL(string: response.image)
         let viewModel = NewsModels.NewsElement.ViewModel(
             id: response.id, title: response.title,
             date: formattingDate(date: response.date),
-            text: response.text, image: response.image, url: response.url)
+            text: response.text, imageURL: url)
         viewController?.displayNewsElement(viewModel: viewModel)
     }
 }

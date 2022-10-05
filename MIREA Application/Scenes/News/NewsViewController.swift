@@ -12,7 +12,6 @@
 
 import UIKit
 
-
 protocol NewsViewControllerDelegate: AnyObject {
     func userSelectedCell(id: Int)
     func showLastNews()
@@ -23,13 +22,15 @@ protocol NewsDisplayLogic: AnyObject {
     func displayNewsElement(viewModel: NewsModels.NewsElement.ViewModel)
 }
 
-final class NewsViewController: UIViewController, NewsDisplayLogic {
+final class NewsViewController: UIViewController {
     var interactor: NewsBusinessLogic?
-    var router: (NSObjectProtocol & NewsRoutingLogic & NewsDataPassing)?
+    var router: (NSObjectProtocol & NewsRoutingLogic)?
     var newsView = NewsView()
     weak var newsViewDelegate: NewsViewDelegate?
+    lazy var presentDelegate = TransitioningDelegate()
 
-  // MARK: Object lifecycle
+            
+    // MARK: Object lifecycle
   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -42,11 +43,10 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
         setup()
     }
   
-  // MARK: Setup
+    // MARK: Setup
   
     private func setup() {
         print("⭕️ setup in NewsViewController")
-        
         let viewController = self
         let interactor = NewsInteractor()
         let presenter = NewsPresenter()
@@ -56,15 +56,11 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
-        router.dataStore = interactor
         newsView.newsViewControllerDelegate = self
         newsViewDelegate = newsView
     }
     
     func setupNavBar() {
-//        navigationItem.title = nil
-//        navigationItem.backButtonTitle = ""
-//        navigationItem.titleView?.tintColor = .clear
         navigationController?.navigationBar.isHidden = true
     }
   
@@ -81,9 +77,11 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
         super.viewDidAppear(animated)
         showTabBar()
     }
+}
     
-  // MARK: Display methods
-  
+    // MARK: Display logic
+    
+extension NewsViewController: NewsViewControllerDelegate, NewsDisplayLogic {
     func displayNews(viewModel: NewsModels.News.ViewModel) {
         print("⭕️ displayNews in NewsViewController")
         newsViewDelegate?.showNews(viewModel)
@@ -93,15 +91,10 @@ final class NewsViewController: UIViewController, NewsDisplayLogic {
         print("⭕️ displaySpecificNews in NewsViewController")
         self.router?.displayNewsElement(viewModel: viewModel)
     }
-}
-    
-    // MARK: NewsVCDelegate
-    
-extension NewsViewController: NewsViewControllerDelegate {
     
     func showLastNews() {
         print("⭕️ makingRequest in NewsViewController")
-        let request = NewsModels.News.Request(limit: 20) /// User will choose 20 or 10 in future
+        let request = NewsModels.News.Request(limit: 20) /// in perspective user will be able to choose 20 or 10
         interactor?.getNewsFromServer(request: request)
     }
     

@@ -18,7 +18,7 @@ class CalendarCell: UICollectionViewCell {
         didSet {
             if self.isSelected {
                 UIView.animate(withDuration: 0.08) { // for animation effect
-                    self.backgroundColor = Color.defaultTheme.orange
+                    self.backgroundColor = Color.defaultDark.orange
                     self.layer.cornerRadius = 0.5 * self.bounds.size.width
 
                 }
@@ -117,8 +117,8 @@ final class ScheduleView: UIView, UICollectionViewDelegate {
     private func makeConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Const.middleSpace),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Const.middleSpace),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
         ])
@@ -223,7 +223,7 @@ extension ScheduleView: ScheduleViewDelegate {
     func showClasses(_ viewModel: ScheduleModels.Classes.ViewModel) {
         print("⭕️ showClasses in ScheduleView")
         var classesList = [ScheduleCollectionItem]()
-        viewModel.enumerated().forEach { id, item in
+        viewModel.items.enumerated().forEach { id, item in
             let classElement = ScheduleCollectionItem(content: .list(configuration: .init(
                 id: id, name: item.name, room: item.room,
                 type: item.type, group: item.group, number: item.number, wdNum: item.wdNum)))

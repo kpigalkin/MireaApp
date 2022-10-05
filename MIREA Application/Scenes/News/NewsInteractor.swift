@@ -23,7 +23,7 @@ protocol NewsDataStore {
     var path: String { get }
 }
 
-final class NewsInteractor: NewsBusinessLogic, NewsDataStore {
+final class NewsInteractor: NewsBusinessLogic, NewsDataStore, DecodeData {
     var page = 0
     var presenter: NewsPresentationLogic?
     let path: String = "/news"
@@ -44,28 +44,28 @@ final class NewsInteractor: NewsBusinessLogic, NewsDataStore {
         guard let url = components.url else { return }
         
         let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data, let news = try? JSONDecoder().decode(NewsModels.News.Response.self, from: data) {
-                DispatchQueue.main.async {
-                    self.presenter?.presentNews(response: news)
-                    self.page += 1
-                }
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            let news = self?.decode(NewsItems.self, from: data)
+            guard let news = news else { return }
+            DispatchQueue.main.async {
+                let response = NewsModels.News.Response(items: news)
+                self?.presenter?.presentNews(response: response)
+                self?.page += 1
             }
         }
         task.resume()
     }
-    
+
     func getNewsElement(request: NewsModels.NewsElement.Request) {
         print("⭕️ getNewsElement in NewsInteractor")
-
         components.path = path + "/" + String(request.id)
         guard let url = components.url else { return }
         let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data, let news = try? JSONDecoder().decode(NewsModels.NewsElement.Response.self, from: data) {
-                DispatchQueue.main.async {
-                    self.presenter?.presentNewsElement(response: news)
-                }
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            let newsItem = self?.decode(NewsModels.NewsElement.Response.self, from: data)
+            guard let newsItem = newsItem else { return }
+            DispatchQueue.main.async {
+                self?.presenter?.presentNewsElement(response: newsItem)
             }
         }
         task.resume()

@@ -7,21 +7,13 @@
 
 import UIKit
 
-    // MARK:  Custom cell
-
-class NewsCell: UICollectionViewCell {
-    static let identifier = "newsCell"
-    var id : Int?
-}
-
-    // MARK: - NewsView
-
 final class NewsView: UIView, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
+    private lazy var cellIdentifier = "newsCell"
     weak var newsViewControllerDelegate: NewsViewControllerDelegate?
+    var selectedCell: UICollectionViewCell?
     
-    private let newsCellRegistration = UICollectionView.CellRegistration<NewsCell, NewsConfiguration> { cell, indexPath, itemConfiguration in
+    private let newsCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, NewsConfiguration> { cell, indexPath, itemConfiguration in
         cell.contentConfiguration = nil
-        cell.id = itemConfiguration.id
         cell.contentConfiguration = itemConfiguration
     }
     
@@ -29,11 +21,11 @@ final class NewsView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
         let view = UICollectionView(
             frame: .zero,
             collectionViewLayout: NewsCollectionViewLayoutFactory.newsFeedLayout())
-        view.register(NewsCell.self, forCellWithReuseIdentifier: NewsCell.identifier)
+        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         view.delegate = self
         view.prefetchDataSource = self
         view.showsVerticalScrollIndicator = false
-        view.backgroundColor = Color.defaultTheme.lightBlue
+        view.backgroundColor = Color.defaultDark.lightBlue
         return view
     }()
     
@@ -53,9 +45,15 @@ final class NewsView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
         // MARK: CollectionView methods
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? NewsCell
-        guard let id = cell?.id else { return }
-        newsViewControllerDelegate?.userSelectedCell(id: id)
+        guard let item = dataSourse.itemIdentifier(for: indexPath)?.content else {
+            return
+        }
+        guard let cell = collectionView.cellForItem(at: indexPath) else {
+            return
+        }
+        selectedCell = cell /// Cell data for custom transition
+        globalCell = cell // delete // delete // delete // delete // delete // delete
+        newsViewControllerDelegate?.userSelectedCell(id: item.id)
     }
         
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
@@ -90,10 +88,7 @@ final class NewsView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
                 let _ = self.dataSourse.sectionIdentifier(for: indexPath.section) else {
                 return .init(frame: .zero)
             }
-            switch item.content {
-            case .news(config: let configuration):
-                return collectionView.dequeueConfiguredReusableCell(using: self.newsCellRegistration, for: indexPath, item: configuration)
-            }
+            return collectionView.dequeueConfiguredReusableCell(using: self.newsCellRegistration, for: indexPath, item: item.content)
         }
         return dataSource
     }

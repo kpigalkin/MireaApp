@@ -12,14 +12,11 @@ enum NewsSection: Int {
 }
 
 struct NewsCollectionItem: Hashable {
-    enum ItemType {
-        case news(config: NewsConfiguration)
-    }
     
-    let content: ItemType
+    let content: NewsConfiguration
     let uuid = UUID()
     
-    init(content: ItemType) {
+    init(content: NewsConfiguration) {
         self.content = content
     }
     

@@ -6,23 +6,29 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class NewsContentView: UIView, UIContentView {
-    var configuration: UIContentConfiguration
-    private var aspectRatio: CGFloat = 0.625 /// 10:16
+    
+    var configuration: UIContentConfiguration {
+        didSet {
+            configure()
+        }
+    }
+    
     static var imageDictionary = [Int: UIImage?]()
     private var id: Int?
 
     private let title: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = Color.defaultTheme.lightText
+        label.textColor = Color.defaultDark.lightText
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
     
-    private let picture: UIImageView = {
+    let picture: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
@@ -39,7 +45,6 @@ final class NewsContentView: UIView, UIContentView {
         configuration = contentConfiguration
         super.init(frame: .zero)
         setupLayer()
-        configure()
         addSubviews()
         makeConstraints()
     }
@@ -64,47 +69,29 @@ final class NewsContentView: UIView, UIContentView {
         title.translatesAutoresizingMaskIntoConstraints = false
         picture.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            picture.topAnchor.constraint(equalTo: topAnchor, constant: Const.space),
-            picture.widthAnchor.constraint(equalTo: widthAnchor, constant: -Const.middleSpace),
+            picture.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            picture.widthAnchor.constraint(equalTo: widthAnchor, constant: -20),
             picture.centerXAnchor.constraint(equalTo: centerXAnchor),
-            picture.heightAnchor.constraint(equalTo: picture.widthAnchor, multiplier: aspectRatio),
+            picture.heightAnchor.constraint(equalTo: picture.widthAnchor, multiplier: 0.625),
             
-            title.topAnchor.constraint(equalTo: picture.bottomAnchor, constant: Const.space),
-            title.leadingAnchor.constraint(equalTo: picture.leadingAnchor, constant: Const.minSpace),
-            title.trailingAnchor.constraint(equalTo: picture.trailingAnchor, constant: -Const.minSpace),
-            title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Const.space)
+            title.topAnchor.constraint(equalTo: picture.bottomAnchor, constant: 10),
+            title.leadingAnchor.constraint(equalTo: picture.leadingAnchor, constant: 5),
+            title.trailingAnchor.constraint(equalTo: picture.trailingAnchor, constant: -5),
+            title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
     }
 }
 
 extension NewsContentView {
     private func setupImage(id: Int, imageUrl: URL?) {
-                
-        if let image = NewsContentView.imageDictionary[id] {
-            picture.image = image
-            print("🌄✅ image already exists")
-        } else {
-            DispatchQueue.global().async {
-                do {
-                    let defaultImageURL = URL(string: "https://www.mirea.ru/upload/medialibrary/d07/RTS_colour.jpg")!
-                    let url = imageUrl ?? defaultImageURL
-                    let data = try Data(contentsOf: url)
-                    guard let image = UIImage(data: data) else { return }
-                    DispatchQueue.main.async {
-                        self.picture.image = image
-                        NewsContentView.imageDictionary[id] = image
-                        print("🌄⬆ image downloaded and setted")
-                    }
-                }
-                catch {
-                    print("❌ Image isn't downloaded")
-                }
-            }
+        guard let imageUrl = imageUrl else {
+            return
         }
+        picture.sd_setImage(with: imageUrl)
     }
     
     private func setupLayer() {
-        backgroundColor = Color.defaultTheme.lightBlack
+        backgroundColor = Color.defaultDark.lightBlack
         layer.cornerRadius = 17
         layer.masksToBounds = true
     }

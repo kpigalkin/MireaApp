@@ -44,7 +44,7 @@ extension ScheduleCollectionViewLayoutFactory {
             // Day cell
         let dayItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .fractionalHeight(1.0))
         let dayItem = NSCollectionLayoutItem(layoutSize: dayItemSize)
-        dayItem.contentInsets = .init(top: Const.minSpace, leading: Const.minSpace, bottom: Const.minSpace, trailing: Const.minSpace)
+        dayItem.contentInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
         
             // Week group with day cells
         let weekSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
@@ -68,9 +68,9 @@ extension ScheduleCollectionViewLayoutFactory {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = Const.middleSpace
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: Const.middleSpace, leading: Const.minSpace,
-                                                             bottom: Const.middleSpace, trailing: Const.minSpace)
+        section.interGroupSpacing = 20
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 20, leading: 5,
+                                                             bottom: 20, trailing: 5)
         return section
     }
 }

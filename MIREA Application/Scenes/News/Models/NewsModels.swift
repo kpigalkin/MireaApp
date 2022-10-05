@@ -17,19 +17,13 @@ enum NewsModels {
         struct Request {
             let limit: Int
         }
-      
-        struct ResponseItem: Decodable {
-            let id: Int
-            let name: String
-            let image: String
+        
+        struct Response {
+            let items: [NewsItem]
         }
-        typealias Response = [ResponseItem]
       
         struct ViewModel {
             let element: [NewsCollectionItem]
-            init(_ news: [NewsCollectionItem]) {
-                self.element = news
-            }
         }
     }
     
@@ -43,6 +37,10 @@ enum NewsModels {
             let image: String
             let url: String
         }
-        typealias ViewModel = Response
+        struct ViewModel {
+            let id: Int
+            let title, date, text: String
+            let imageURL: URL?
+        }
     }
 }
